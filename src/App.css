@@ -12,23 +12,3 @@
 	/*grid-gap: 10px;*/
 
 }
-
-.header {
-	grid-area: h;
-	background-color: green;
-
-}
-
-.header img {
-	width: 60px;
-}
-
-.nav {
-	grid-area: n;
-	background-color: rgb(117, 24, 24);
-}
-
-.content {
-	grid-area: c;
-	background-color: rgb(61, 61, 197);
-}
