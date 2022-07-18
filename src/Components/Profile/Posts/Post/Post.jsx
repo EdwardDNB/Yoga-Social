@@ -1,15 +1,14 @@
 import s from './Post.module.css'
-const Post = () => {
+const Post = (props) => {
+
 	return <div className={s.item}>
-		Post 1
+		{props.post}
 		<div>
 			<img src="https://englishlib.org/dictionary/img/wlibrary/g/6017321a0c7654.91890660.jpg" alt="" />
+			{props.message} {props.likes}
 
 		</div>
-		<div>
-			<textarea name="" id="" cols="30" rows="10"></textarea>
-			<button>Send</button>
-		</div>
+
 	</div>
 
 
