@@ -11,9 +11,9 @@ const Posts = () => {
 
 			</div>
 		</div>
-		<Post props post='Post 1' message='Hello, how are you?' likes='0 Likes' />
+		<Post props postCount='1' message='Hello, how are you?' likesCount='0' />
 
-		<Post props post='Post 2' message='Do you wana like a party?' likes='20 Likes' />
+		<Post props postCount='2' message='Do you wana like a party?' likesCount='20' />
 
 
 	</div>
