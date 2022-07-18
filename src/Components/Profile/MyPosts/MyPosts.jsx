@@ -9,11 +9,9 @@ const MyPosts = () => {
 			<button>Remove</button>
 		</div >
 		<div className={s.posts}>
-			<Post />
-			<Post />
-			<Post />
-			<Post />
-			<Post />
+			<Post props messege='How are you?'likeCounts='0'/>
+			<Post props messege='Do you one a party?'likeCounts='10'/>
+
 		</div>
 	</div >
 

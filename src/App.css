@@ -11,4 +11,9 @@
 	grid-template-columns: 2fr 10fr;
 	/*grid-gap: 10px;*/
 
+
+}
+.app-wraper-content {
+	grid-area: c;
+	background-color: rgb(61, 61, 197);
 }
