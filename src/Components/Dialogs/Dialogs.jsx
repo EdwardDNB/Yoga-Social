@@ -1,42 +1,39 @@
 import s from './Dialogs.module.css'
 
+const Dialog = (props) => {
+    return <div className={s.dialog}>
+        {props.name}
+    </div>
+}
+const Message = (props) => {
+    return <div className={s.message}>{props.message}</div>
+}
 
 const Dialogs = () => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogItems}>
-                <div className={s.dialog}>
-                    Oksana
-                </div>
-                <div className={s.dialog}>
-                    Oleg
-                </div>
-                <div className={s.dialog}>
-                    Yan
-                </div>
-                <div className={s.dialog}>
-                    Inna
-                </div>
-                <div className={s.dialog}>
-                    Nikita
-                </div>
-                <div className={s.dialog}>
-                    Snejana
-                </div>
+                <Dialog name='Oksana'/>
+                <Dialog name='Oleg'/>
+                <Dialog name='Yan'/>
+                <Dialog name='Inna'/>
+                <Dialog name='Nikita'/>
+                <Dialog name='Snejana'/>
             </div>
             <div className={s.messages}>
-                <div className={s.message}>Are you happy today?</div>
-                <div className={s.message}>Did you have fun at the party.</div>
-                <div className={s.message}>Will you come to class tomorrow?</div>
-                <div className={s.message}>Where are you from?</div>
-                <div className={s.message}>What did you do on Saturday evening?</div>
-                <div className={s.message}>Why was the class difficult?</div>
+                <Message message='Are you happy today?'/>
+                <Message message='Did you have fun at the party.'/>
+                <Message message='Will you come to class tomorrow?'/>
+                <Message message='Where are you from?'/>
+                <Message message='What did you do on Saturday evening?'/>
+                <Message message='Why was the class difficult?'/>
+
             </div>
 
 
-</div>
+        </div>
 
-)
+    )
 
 
 }

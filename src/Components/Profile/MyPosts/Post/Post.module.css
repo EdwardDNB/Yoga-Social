@@ -1,5 +1,6 @@
 .item {
-	color: green
+	color: green;
+	padding: 20px;
 }
 
 .item img {
