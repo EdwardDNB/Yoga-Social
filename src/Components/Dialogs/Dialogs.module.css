@@ -1,4 +1,17 @@
-.content {
-	grid-area: c;
-	background-color: rgb(61, 61, 197);
+.dialogs{
+display: grid;
+    grid-template-columns: 2fr 10fr;
+    grid-template-areas: "d m";
+}
+.dialogsitem{
+grid-area: d;
+}
+.dialog{
+    padding: 20px;
+}
+.messages{
+    grid-area: m;
+}
+.message{
+    padding: 20px;
 }

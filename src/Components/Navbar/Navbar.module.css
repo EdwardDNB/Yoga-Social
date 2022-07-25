@@ -4,5 +4,11 @@
 }
 
 .item {
+	padding: 20px;
+	text-decoration: none;
 	color: white;
+}
+.active{
+	text-decoration: none;
+	color: gold
 }
