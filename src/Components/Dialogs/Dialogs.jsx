@@ -1,33 +1,30 @@
 import s from './Dialogs.module.css'
-const Dialogs = () => {
+import {NavLink} from "react-router-dom";
+
+const Dialog = (props) => {
+    return <NavLink className={s.dialog} to={"" + props.id}>
+        <div>{props.name}</div>
+    </NavLink>
+
+}
+const Message = (props) => {
+    return <div className={s.message}>{props.message}</div>
+}
+
+const Dialogs = (props) => {
+
+
+
+    let DialogElement = props.DialogsData.map(d => <Dialog name={d.name} id={d.id}/>)
+    let MessageElement = props.MessagesData.map(m => <Message message={m.message}/>)
+
     return <div className={s.dialogs}>
         <div className={s.dialogsitem}>
-            <div className={s.dialog}>
-                Ruslan
-            </div>
-            <div className={s.dialog}>
-                Ludmila
-            </div>
-            <div className={s.dialog}>
-                Anna
-            </div>
-            <div className={s.dialog}>
-                Petr
-            </div>
-            <div className={s.dialog}>
-                Egor
-            </div>
-            <div className={s.dialog}>
-                Sergei
-            </div>
+            {DialogElement}
+
         </div>
         <div className={s.messages}>
-            <div className={s.message}>Are you a football player?</div>
-            <div className={s.message}>Do you go to the cinema every week?</div>
-            <div className={s.message}>Does he work at the factory?</div>
-            <div className={s.message}>Did she live in Kyiv?</div>
-            <div className={s.message}>Will we go to the zoo?</div>
-            <div className={s.message}>She will go to school soon.</div>
+            {MessageElement}
         </div>
     </div>
 
