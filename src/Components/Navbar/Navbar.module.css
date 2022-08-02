@@ -12,3 +12,7 @@
 	text-decoration: none;
 	color: gold
 }
+.item img {
+	width: 70px;
+	padding: 5px;
+}

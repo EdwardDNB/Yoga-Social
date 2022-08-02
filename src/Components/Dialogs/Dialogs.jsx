@@ -15,8 +15,8 @@ const Dialogs = (props) => {
 
 
 
-    let DialogElement = props.DialogsData.map(d => <Dialog name={d.name} id={d.id}/>)
-    let MessageElement = props.MessagesData.map(m => <Message message={m.message}/>)
+    let DialogElement = props.DialogsBranch.DialogsData.map(d => <Dialog name={d.name} id={d.id}/>)
+    let MessageElement = props.DialogsBranch.MessagesData.map(m => <Message message={m.message}/>)
 
     return <div className={s.dialogs}>
         <div className={s.dialogsitem}>
