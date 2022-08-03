@@ -9,8 +9,23 @@
 	color: white;
 
 }
+.friends{
+	padding: 20px;
+	grid-template-rows: 60px 1fr;
+	grid-template-areas:
+		"n"
+		"f f"
+}
 .active {
 	color: gold;
 	cursor: default;
 	text-decoration: none;
+}
+.friend img{
+	width: 50px;
+}
+.friend{
+	grid-area: f;
+	padding: 5px;
+
 }
