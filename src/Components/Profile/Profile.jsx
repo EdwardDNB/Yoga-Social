@@ -1,5 +1,6 @@
 import Posts from './Posts/Posts'
 import s from './Profile.module.css'
+import {addPost} from "../../Redax/State";
 const Profile = (props) => {
 
 
@@ -10,7 +11,7 @@ const Profile = (props) => {
 		<div>
 			ava + description
 		</div>
-		<Posts PostData={props.ProfileBranch.PostData}/>
+		<Posts PostData={props.ProfileBranch.PostData} addPost={props.addPost}/>
 	</div>
 
 }
