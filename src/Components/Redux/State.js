@@ -1,10 +1,12 @@
 import {rerenderEntireTrees} from '../../render'
+
 let State = {
     ProfilePage: {
         PostData: [
             {message: 'How are you?', likeCounts: 0},
             {message: 'Do you one a party??', likeCounts: 10}
-        ]
+        ],
+        TextData: 'Write Messages',
     },
     DialogsPage: {
         DialogsData: [
@@ -25,13 +27,20 @@ let State = {
         ]
     }
 }
-export let addPost = (postMessage) => {
+window.state = State;
+export let addPost = () => {
     let newPost = {
-        message: postMessage,
+        message: State.ProfilePage.TextData,
         likeCounts: 0
     }
     State.ProfilePage.PostData.push(newPost)
     rerenderEntireTrees(State)
+    State.ProfilePage.TextData=''
+}
+export let changePost = (newText) => {
+    State.ProfilePage.TextData = newText
+    rerenderEntireTrees(State)
+
 }
 
 

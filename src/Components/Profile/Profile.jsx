@@ -4,11 +4,12 @@ import Desine from "./Desine/Desine";
 
 
 
+
 const Profile = (props) => {
-debugger
+
     return <div className={s.content}>
         <Desine/>
-        <MyPosts PostData={props.state.PostData} addPost={props.addPost}/>
+        <MyPosts PostData={props.ProfilePage.PostData} addPost={props.addPost} changePost={props.changePost} Text={props.ProfilePage.TextData}/>
     </div>
 }
 export default Profile
