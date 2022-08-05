@@ -1,4 +1,6 @@
-import {rerenderEntireTrees} from '../../render'
+let rerenderEntireTrees = () => {
+
+}
 
 let State = {
     ProfilePage: {
@@ -28,21 +30,23 @@ let State = {
     }
 }
 window.state = State;
-export let addPost = () => {
+export const addPost = () => {
     let newPost = {
         message: State.ProfilePage.TextData,
         likeCounts: 0
     }
     State.ProfilePage.PostData.push(newPost)
     rerenderEntireTrees(State)
-    State.ProfilePage.TextData=''
+    State.ProfilePage.TextData = ''
 }
-export let changePost = (newText) => {
+export const changePost = (newText) => {
     State.ProfilePage.TextData = newText
     rerenderEntireTrees(State)
 
 }
 
-
+export const subscribe = (observer) => {
+    rerenderEntireTrees = observer
+}
 
 export default State
