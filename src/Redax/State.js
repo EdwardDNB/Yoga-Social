@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from '../Render'
+
 let State = {
     DialogsBranch: {
         DialogsData: [
@@ -14,24 +16,32 @@ let State = {
             {message: 'Did she live in Kyiv?', id: 4},
             {message: 'Will we go to the zoo?', id: 5},
             {message: 'She will go to school soon', id: 6}
-        ]
+        ],
+
     },
     ProfileBranch: {
         PostData: [
             {postCount: 1, message: 'Hello, how are you?', likesCount: 0},
             {postCount: 2, message: 'Do you wana like a party?', likesCount: 20}
-        ]
+        ],
+        TextData: 'Write Messages',
     }
 }
-
-export let addPost = (message) => {
+window.state = State
+export let addPost = () => {
     let Push = {
         postCount: 3,
-        message: message,
+        message: State.ProfileBranch.TextData,
         likesCount: 0
     }
     State.ProfileBranch.PostData.push(Push)
+    rerenderEntireTree(State)
+    State.ProfileBranch.TextData = ''
 }
+export let ChangePost = (text) => {
+    State.ProfileBranch.TextData = text
+    rerenderEntireTree(State)
 
+}
 
 export default State
