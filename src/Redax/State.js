@@ -1,4 +1,5 @@
-import {rerenderEntireTree} from '../Render'
+let rerenderEntireTree = () => {
+}
 
 let State = {
     DialogsBranch: {
@@ -28,7 +29,7 @@ let State = {
     }
 }
 window.state = State
-export let addPost = () => {
+export const addPost = () => {
     let Push = {
         postCount: 3,
         message: State.ProfileBranch.TextData,
@@ -38,10 +39,12 @@ export let addPost = () => {
     rerenderEntireTree(State)
     State.ProfileBranch.TextData = ''
 }
-export let ChangePost = (text) => {
+export const ChangePost = (text) => {
     State.ProfileBranch.TextData = text
     rerenderEntireTree(State)
 
 }
-
+export const encripted = (observetion) => {
+    rerenderEntireTree = observetion
+}
 export default State
