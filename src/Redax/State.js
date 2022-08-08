@@ -52,10 +52,7 @@ State.DialogsBranch.MessageText=text
     rerenderEntireTree(State)
 }
 export const addMessage=()=>{
-    let Push={
-        id: 7,
-        message: State.DialogsBranch.MessageText
-    }
+    let Push={id: 7, message: State.DialogsBranch.MessageText}
     let Name={name: 'Edward', id: 7}
     State.DialogsBranch.MessagesData.push(Push)
     State.DialogsBranch.DialogsData.push(Name)
