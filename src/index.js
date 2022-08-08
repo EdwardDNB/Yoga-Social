@@ -1,5 +1,5 @@
 import './index.css';
-import State from "./Redax/State";
+import State, {addMessage, ChangeMessage} from "./Redax/State";
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
@@ -14,7 +14,8 @@ export let rerenderEntireTree = (State) => {
     root.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App State={State} addPost={addPost} ChangePost={ChangePost}/>
+                <App State={State} addPost={addPost} ChangePost={ChangePost} ChangeMessage={ChangeMessage} addMessage={addMessage}
+                />
             </BrowserRouter>
         </React.StrictMode>
     )

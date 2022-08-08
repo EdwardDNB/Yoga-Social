@@ -7,6 +7,8 @@ import Dialogs from "./Components/Dialogs/Dialogs";
 import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
+import {addMessage} from "./Redax/State";
+
 
 
 const App = (props) => {
@@ -19,7 +21,10 @@ const App = (props) => {
                     <Route path="Profile"
                            element={<Profile ProfileBranch={props.State.ProfileBranch} addPost={props.addPost}
                                              ChangePost={props.ChangePost}/>}/>
-                    <Route path="Dialogs" element={<Dialogs DialogsBranch={props.State.DialogsBranch}/>}/>
+                    <Route path="Dialogs" element={<Dialogs DialogsBranch={props.State.DialogsBranch}
+                                                            ChangeMessage={props.ChangeMessage}
+                                                            addMessage={props.addMessage}
+                    />}/>
                     <Route path="News" element={<News/>}/>
                     <Route path="Music" element={<Music/>}/>
                     <Route path="Settings" element={<Settings/>}/>

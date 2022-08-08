@@ -1,22 +1,26 @@
-.dialogs{
+.dialogs {
     padding: 20px;
     display: grid;
     grid-template-columns: 2fr 10fr;
     grid-template-areas: "d m";
 }
-.dialogsitem{
-grid-area: d;
+
+.dialogsitem {
+    grid-area: d;
 
 }
 
-.dialog{
+.dialog {
     text-decoration: none;
     color: gold;
     padding: 20px;
 }
-.messages{
+
+.messages {
     grid-area: m;
+    padding: 10px;
 }
-.message{
-    padding: 20px;
+
+.message {
+    padding: 10px;
 }

@@ -2,6 +2,7 @@ import s from './Dialogs.module.css'
 import {NavLink} from "react-router-dom";
 import React from "react";
 const Dialog = (props) => {
+
     return <NavLink className={s.dialog} to={"" + props.id}>
         <div>{props.name}</div>
     </NavLink>
@@ -13,15 +14,19 @@ const Message = (props) => {
 
 const Dialogs = (props) => {
 
-
     let DialogElement = props.DialogsBranch.DialogsData.map(d => <Dialog name={d.name} id={d.id}/>)
     let MessageElement = props.DialogsBranch.MessagesData.map(m => <Message message={m.message}/>)
 
+
     let Element = React.createRef()
-    let addPost = () => {
-        let any = Element.current.value
-            alert(any)
+    let addMessage = () => {
+        props.addMessage()
     }
+let ChangeMessage=()=>{
+let text = Element.current.value
+    props.ChangeMessage(text)
+}
+
 
     return <div className={s.dialogs}>
         <div className={s.dialogsitem}>
@@ -32,8 +37,8 @@ const Dialogs = (props) => {
             {MessageElement}
         </div>
         <div>
-            <textarea ref={Element} rows='10'></textarea>
-            <button onClick={addPost}>Send</button>
+            <textarea onChange={ChangeMessage} ref={Element} value={props.DialogsBranch.MessageText} rows='10'  ></textarea>
+            <button onClick={addMessage}>Send</button>
         </div>
     </div>
 
