@@ -19,8 +19,8 @@ const App = (props) => {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path="dialogs" element={<Dialogs state={props.State.DialogsPage}/>}/>
-                    <Route path="Profile" element={<Profile ProfilePage={props.State.ProfilePage} addPost={props.addPost} changePost={props.changePost}/>}/>
+                    <Route path="dialogs" element={<Dialogs state={props.state.DialogsPage}/>}/>
+                    <Route path="Profile" element={<Profile ProfilePage={props.state.ProfilePage} dispatch={props.dispatch}/>}/>
                     <Route path="News" element={<News/>}/>
                     <Route path="Music" element={<Music/>}/>
                     <Route path="Settings" element={<Settings/>}/>

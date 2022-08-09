@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
 
@@ -8,12 +8,13 @@ const MyPosts = (props) => {
     let newPostElement = React.createRef()
 
     let addPost = () => {
-        props.addPost()
+
+        props.dispatch({type: 'ADD-POST'})
     }
 
-    let changePost=()=>{
+    let changePost = () => {
         let text = newPostElement.current.value
-        props.changePost(text)
+        props.dispatch({type: 'CHANGE-POST', Newtext: text})
     }
 
     let PostElement = props.PostData.map(p => <Post props messege={p.message} likeCounts={p.likeCounts}/>)
