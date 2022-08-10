@@ -7,11 +7,12 @@ import Dialogs from "./Components/Dialogs/Dialogs";
 import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
-import {addMessage} from "./Redax/State";
+
 
 
 
 const App = (props) => {
+
     return (
         <div className='app-wrapper'>
             <Header/>
@@ -19,9 +20,8 @@ const App = (props) => {
             <div className='app-wrapper-content'>
                 <Routes>
                     <Route path="Profile"
-                           element={<Profile ProfileBranch={props.State.ProfileBranch} addPost={props.addPost}
-                                             ChangePost={props.ChangePost}/>}/>
-                    <Route path="Dialogs" element={<Dialogs DialogsBranch={props.State.DialogsBranch}
+                           element={<Profile ProfileBranch={props.state.ProfileBranch} dispatch={props.dispatch}/>}/>
+                    <Route path="Dialogs" element={<Dialogs DialogsBranch={props.state.DialogsBranch}
                                                             ChangeMessage={props.ChangeMessage}
                                                             addMessage={props.addMessage}
                     />}/>

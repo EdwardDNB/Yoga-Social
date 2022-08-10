@@ -1,24 +1,25 @@
 import './index.css';
-import State, {addMessage, ChangeMessage} from "./Redax/State";
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import {addPost, ChangePost, encripted} from './Redax/State'
 import {BrowserRouter} from "react-router-dom";
+import stoke from "./Redax/Stoke";
+
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-export let rerenderEntireTree = (State) => {
+export let rerenderEntireTree = (state) => {
 
     root.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App State={State} addPost={addPost} ChangePost={ChangePost} ChangeMessage={ChangeMessage} addMessage={addMessage}
+                <App state={stoke.getState()} dispatch={stoke.dispatch.bind(stoke)}  ChangeMessage={stoke.ChangeMessage.bind(stoke)} addMessage={stoke.addMessage.bind(stoke)}
                 />
             </BrowserRouter>
         </React.StrictMode>
     )
 }
-rerenderEntireTree(State)
-encripted(rerenderEntireTree)
+rerenderEntireTree(stoke.getState())
+
+stoke.encripted(rerenderEntireTree)

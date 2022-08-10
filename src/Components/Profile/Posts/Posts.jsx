@@ -4,18 +4,17 @@ import React from "react";
 
 const Posts = (props) => {
 
-
     let PostElement = props.PostData.map(p => <Post postCount={p.postCount} message={p.message}
                                                     likesCount={p.likesCount}/>)
 
     let PostMessage = React.createRef()
     let addPost = () => {
-        props.addPost()
+        props.dispatch({type:'ADD-POST'})
     }
 
     let ChangeMessage=()=>{
         let text = PostMessage.current.value
-        props.ChangePost(text)
+        props.dispatch({type:'CHANGE-POST',Newtext: text})
 
     }
 
