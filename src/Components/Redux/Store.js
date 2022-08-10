@@ -1,3 +1,5 @@
+const ADD_POST = 'ADD-POST';
+const CHANGE_POST = 'CHANGE-POST';
 let store = {
     _state: {
         ProfilePage: {
@@ -24,7 +26,8 @@ let store = {
                 {message: "What did you do on Saturday evening?", id: 5},
                 {message: "Why was the class difficult?", id: 6},
             ]
-        }},
+        }
+    },
     _callSubscriber() {
     },
 
@@ -36,7 +39,7 @@ let store = {
     },
 
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             let newPost = {
                 message: this._state.ProfilePage.TextData,
                 likeCounts: 0
@@ -44,12 +47,15 @@ let store = {
             this._state.ProfilePage.PostData.push(newPost)
             this._callSubscriber(this._state)
             this._state.ProfilePage.TextData = ''
-        } else if (action.type === 'CHANGE-POST') {
+        } else if (action.type === CHANGE_POST) {
             this._state.ProfilePage.TextData = action.Newtext
             this._callSubscriber(this._state)
         }
     }
+
 }
 
+export const addPostActionCreator = () => ({type: ADD_POST})
+export const changeActionCreator = (text) => ({ type: CHANGE_POST, Newtext: text})
 window.store = store
 export default store
