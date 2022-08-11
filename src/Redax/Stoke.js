@@ -1,4 +1,6 @@
 import {rerenderEntireTree} from "../index";
+let CHANGE_POST = 'CHANGE-POST';
+let ADD_POST = 'ADD-POST';
 
 let stoke = {
     getState() {
@@ -34,7 +36,7 @@ let stoke = {
     },
     dispatch(action) {
 
-        if (action.type=== 'ADD-POST') {
+        if (action.type === ADD_POST) {
             let Push = {
                 postCount: 3,
                 message: this._state.ProfileBranch.TextData,
@@ -43,8 +45,7 @@ let stoke = {
             this._state.ProfileBranch.PostData.push(Push)
             rerenderEntireTree(this._state)
             this._state.ProfileBranch.TextData = ''
-        } else if (action.type=== 'CHANGE-POST')
-        {
+        } else if (action.type === CHANGE_POST) {
             this._state.ProfileBranch.TextData = action.Newtext
             rerenderEntireTree(this._state)
         }
@@ -71,5 +72,11 @@ let stoke = {
 
 
 }
+
+
+export const actionAddPost = () => ({type: ADD_POST})
+export const actionChangePost = (text) => ({type: CHANGE_POST, Newtext: text})
+
+
 window.stoke = stoke
 export default stoke

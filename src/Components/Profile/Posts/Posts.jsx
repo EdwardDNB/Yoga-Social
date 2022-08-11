@@ -1,6 +1,9 @@
 import Post from './Post/Post'
 import s from './Posts.module.css'
 import React from "react";
+import {actionAddPost, actionChangePost} from "../../../Redax/Stoke";
+
+
 
 const Posts = (props) => {
 
@@ -9,12 +12,12 @@ const Posts = (props) => {
 
     let PostMessage = React.createRef()
     let addPost = () => {
-        props.dispatch({type:'ADD-POST'})
+        props.dispatch(actionAddPost())
     }
 
     let ChangeMessage=()=>{
         let text = PostMessage.current.value
-        props.dispatch({type:'CHANGE-POST',Newtext: text})
+        props.dispatch(actionChangePost(text))
 
     }
 
