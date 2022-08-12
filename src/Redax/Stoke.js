@@ -53,10 +53,16 @@ let stoke = {
             rerenderEntireTree(this._state)
         }
         else if (action.type === CHANGE_MESSAGE){
-            this.stoke._ChangeMessage(action.Newtext)
+            this._state.DialogsBranch.MessageText = action.Newtext
+            rerenderEntireTree(this._state)
         }
         else if (action.type === ADD_MESSAGE){
-            this.stoke._addMessage()
+            let Push = {id: 7, message: this._state.DialogsBranch.MessageText}
+            let Name = {name: 'Edward', id: 7}
+            this._state.DialogsBranch.MessagesData.push(Push)
+            this._state.DialogsBranch.DialogsData.push(Name)
+            rerenderEntireTree(this._state)
+            this._state.DialogsBranch.MessageText = ''
         }
         },
     rerenderEntireTree() {
@@ -66,18 +72,7 @@ let stoke = {
     encripted(observetion) {
         this.rerenderEntireTree = observetion
     },
-    _ChangeMessage(text) {
-        this._state.DialogsBranch.MessageText = text
-        rerenderEntireTree(this._state)
-    },
-    _addMessage() {
-        let Push = {id: 7, message: this._state.DialogsBranch.MessageText}
-        let Name = {name: 'Edward', id: 7}
-        this._state.DialogsBranch.MessagesData.push(Push)
-        this._state.DialogsBranch.DialogsData.push(Name)
-        rerenderEntireTree(this._state)
-        this._state.DialogsBranch.MessageText = ''
-    }
+
 
 
 }
