@@ -1,6 +1,9 @@
 import {rerenderEntireTree} from "../index";
+
 let CHANGE_POST = 'CHANGE-POST';
+let CHANGE_MESSAGE = 'CHANGE-MESSAGE';
 let ADD_POST = 'ADD-POST';
+let ADD_MESSAGE = 'ADD-MESSAGE';
 
 let stoke = {
     getState() {
@@ -49,7 +52,13 @@ let stoke = {
             this._state.ProfileBranch.TextData = action.Newtext
             rerenderEntireTree(this._state)
         }
-    },
+        else if (action.type === CHANGE_MESSAGE){
+            this.stoke._ChangeMessage(action.Newtext)
+        }
+        else if (action.type === ADD_MESSAGE){
+            this.stoke._addMessage()
+        }
+        },
     rerenderEntireTree() {
     },
 
@@ -57,11 +66,11 @@ let stoke = {
     encripted(observetion) {
         this.rerenderEntireTree = observetion
     },
-    ChangeMessage(text) {
+    _ChangeMessage(text) {
         this._state.DialogsBranch.MessageText = text
         rerenderEntireTree(this._state)
     },
-    addMessage() {
+    _addMessage() {
         let Push = {id: 7, message: this._state.DialogsBranch.MessageText}
         let Name = {name: 'Edward', id: 7}
         this._state.DialogsBranch.MessagesData.push(Push)
@@ -75,7 +84,9 @@ let stoke = {
 
 
 export const actionAddPost = () => ({type: ADD_POST})
+export const actionAddMESSAGE = () => ({type: ADD_MESSAGE})
 export const actionChangePost = (text) => ({type: CHANGE_POST, Newtext: text})
+export const actionChangeMESSAGE = (text) => ({type: CHANGE_MESSAGE, Newtext: text})
 
 
 window.stoke = stoke

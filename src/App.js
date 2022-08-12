@@ -21,9 +21,7 @@ const App = (props) => {
                 <Routes>
                     <Route path="Profile"
                            element={<Profile ProfileBranch={props.state.ProfileBranch} dispatch={props.dispatch}/>}/>
-                    <Route path="Dialogs" element={<Dialogs DialogsBranch={props.state.DialogsBranch}
-                                                            ChangeMessage={props.ChangeMessage}
-                                                            addMessage={props.addMessage}
+                    <Route path="Dialogs" element={<Dialogs stoke={props.stoke}
                     />}/>
                     <Route path="News" element={<News/>}/>
                     <Route path="Music" element={<Music/>}/>

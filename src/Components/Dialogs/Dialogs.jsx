@@ -1,7 +1,9 @@
 import s from './Dialogs.module.css'
 import {NavLink} from "react-router-dom";
 import React from "react";
+import {actionAddMESSAGE, actionChangeMESSAGE} from "../../Redax/Stoke";
 const Dialog = (props) => {
+
 
     return <NavLink className={s.dialog} to={"" + props.id}>
         <div>{props.name}</div>
@@ -13,18 +15,18 @@ const Message = (props) => {
 }
 
 const Dialogs = (props) => {
+    let state=props.stoke.getState()
+    let DialogElement = state.DialogsBranch.DialogsData.map(d => <Dialog name={d.name} id={d.id}/>)
+    let MessageElement = state.DialogsBranch.MessagesData.map(m => <Message message={m.message}/>)
 
-    let DialogElement = props.DialogsBranch.DialogsData.map(d => <Dialog name={d.name} id={d.id}/>)
-    let MessageElement = props.DialogsBranch.MessagesData.map(m => <Message message={m.message}/>)
 
 
-    let Element = React.createRef()
     let addMessage = () => {
-        props.addMessage()
+        props.stoke.dispatch(actionAddMESSAGE())
     }
-let ChangeMessage=()=>{
-let text = Element.current.value
-    props.ChangeMessage(text)
+let ChangeMessage=(e)=>{
+let text = e.target.value
+    props.stoke.dispatch(actionChangeMESSAGE(text))
 }
 
 
@@ -37,7 +39,7 @@ let text = Element.current.value
             {MessageElement}
         </div>
         <div>
-            <textarea onChange={ChangeMessage} ref={Element} value={props.DialogsBranch.MessageText} rows='10'  ></textarea>
+            <textarea onChange={ChangeMessage} value={state.DialogsBranch.MessageText} rows='10'  ></textarea>
             <button onClick={addMessage}>Send</button>
         </div>
     </div>
