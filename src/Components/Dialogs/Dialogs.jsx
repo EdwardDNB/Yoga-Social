@@ -3,18 +3,27 @@ import s from './Dialogs.module.css'
 import Message from "./Message/Message";
 import Dialog from "./Dialog/Dialog";
 import React from "react";
+import {sendMessageCreator, updateMessageCreator} from "../Redux/Store";
+
 
 
 const Dialogs = (props) => {
 
-    let newPostElement = React.createRef()
+    let state = props.store.getState().DialogsPage
+  let  newMessagesBody=state.newMessagesBody
     let addPost = () => {
-        let text = newPostElement.current.value
-        alert(text)
+        props.store.dispatch(sendMessageCreator())
+
     }
 
-    let MessageElement = props.state.MessageData.map(m => <Message message={m.message}/>)
-    let DialogsElement = props.state.DialogsData.map(d => <Dialog name={d.name} id={d.id}/>)
+    let changeMessage = (e) => {
+
+        let body = e.target.value
+        props.store.dispatch(updateMessageCreator(body))
+    }
+
+    let MessageElement = state.MessageData.map(m => <Message message={m.message}/>)
+    let DialogsElement = state.DialogsData.map(d => <Dialog name={d.name} id={d.id}/>)
     return (
         <div className={s.dialogs}>
             <div className={s.dialogItems}>
@@ -25,7 +34,7 @@ const Dialogs = (props) => {
                 {MessageElement}
 
                 <div className={s.messages}>
-                    <textarea ref={newPostElement} cols="40" rows="5">  </textarea>
+                    <textarea onChange={changeMessage} value={newMessagesBody} cols="40" rows="5">  </textarea>
                     <button onClick={addPost}>Send</button>
                 </div>
             </div>

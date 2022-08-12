@@ -1,5 +1,8 @@
 const ADD_POST = 'ADD-POST';
 const CHANGE_POST = 'CHANGE-POST';
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY';
+const SEND_MESSAGE = 'SEND_MESSAGE';
+
 let store = {
     _state: {
         ProfilePage: {
@@ -25,7 +28,8 @@ let store = {
                 {message: "Where are you from?", id: 4},
                 {message: "What did you do on Saturday evening?", id: 5},
                 {message: "Why was the class difficult?", id: 6},
-            ]
+            ],
+            newMessagesBody:'Write Messages',
         }
     },
     _callSubscriber() {
@@ -51,11 +55,23 @@ let store = {
             this._state.ProfilePage.TextData = action.Newtext
             this._callSubscriber(this._state)
         }
+    else if(action.type===UPDATE_NEW_MESSAGE_BODY){
+        this._state.DialogsPage.newMessagesBody=action.Newtext
+            this._callSubscriber(this._state)
+        }
+        else if(action.type===SEND_MESSAGE){
+            let body=this._state.DialogsPage.newMessagesBody
+            this._state.DialogsPage.MessageData.push({message: body, id: 6})
+            this._callSubscriber(this._state)
+            this._state.DialogsPage.newMessagesBody=''
+        }
     }
 
 }
 
 export const addPostActionCreator = () => ({type: ADD_POST})
 export const changeActionCreator = (text) => ({ type: CHANGE_POST, Newtext: text})
+export const sendMessageCreator = () => ({ type: SEND_MESSAGE})
+export const updateMessageCreator = (body) => ({ type: UPDATE_NEW_MESSAGE_BODY, Newtext:body })
 window.store = store
 export default store
