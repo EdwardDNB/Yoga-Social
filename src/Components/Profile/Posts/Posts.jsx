@@ -1,7 +1,7 @@
 import Post from './Post/Post'
 import s from './Posts.module.css'
 import React from "react";
-import {actionAddPost, actionChangePost} from "../../../Redax/Stoke";
+import {actionAddPost, actionChangePost} from "../../../Redax/profile-reducer";
 
 
 

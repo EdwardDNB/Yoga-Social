@@ -1,9 +1,9 @@
 import {rerenderEntireTree} from "../index";
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
 
-let CHANGE_POST = 'CHANGE-POST';
-let CHANGE_MESSAGE = 'CHANGE-MESSAGE';
-let ADD_POST = 'ADD-POST';
-let ADD_MESSAGE = 'ADD-MESSAGE';
+
 
 let stoke = {
     getState() {
@@ -35,35 +35,17 @@ let stoke = {
                 {postCount: 2, message: 'Do you wana like a party?', likesCount: 20}
             ],
             TextData: 'Write Post',
-        }
+        },
+        SideBar:{}
     },
     dispatch(action) {
 
-        if (action.type === ADD_POST) {
-            let Push = {
-                postCount: 3,
-                message: this._state.ProfileBranch.TextData,
-                likesCount: 0
-            }
-            this._state.ProfileBranch.PostData.push(Push)
-            rerenderEntireTree(this._state)
-            this._state.ProfileBranch.TextData = ''
-        } else if (action.type === CHANGE_POST) {
-            this._state.ProfileBranch.TextData = action.Newtext
-            rerenderEntireTree(this._state)
-        }
-        else if (action.type === CHANGE_MESSAGE){
-            this._state.DialogsBranch.MessageText = action.Newtext
-            rerenderEntireTree(this._state)
-        }
-        else if (action.type === ADD_MESSAGE){
-            let Push = {id: 7, message: this._state.DialogsBranch.MessageText}
-            let Name = {name: 'Edward', id: 7}
-            this._state.DialogsBranch.MessagesData.push(Push)
-            this._state.DialogsBranch.DialogsData.push(Name)
-            rerenderEntireTree(this._state)
-            this._state.DialogsBranch.MessageText = ''
-        }
+        this._state.ProfileBranch=profileReducer(this._state.ProfileBranch,action)
+        this._state.DialogsBranch=dialogsReducer(this._state.DialogsBranch,action)
+        this._state.SideBar=sidebarReducer( this._state.SideBar,action)
+
+        rerenderEntireTree(this._state)
+
         },
     rerenderEntireTree() {
     },
@@ -78,10 +60,7 @@ let stoke = {
 }
 
 
-export const actionAddPost = () => ({type: ADD_POST})
-export const actionAddMESSAGE = () => ({type: ADD_MESSAGE})
-export const actionChangePost = (text) => ({type: CHANGE_POST, Newtext: text})
-export const actionChangeMESSAGE = (text) => ({type: CHANGE_MESSAGE, Newtext: text})
+
 
 
 window.stoke = stoke
