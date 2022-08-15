@@ -3,7 +3,7 @@ import s from './Dialogs.module.css'
 import Message from "./Message/Message";
 import Dialog from "./Dialog/Dialog";
 import React from "react";
-import {sendMessageCreator, updateMessageCreator} from "../Redux/Store";
+import {sendMessageCreator, updateMessageCreator} from "../Redux/dialogReduser";
 
 
 
