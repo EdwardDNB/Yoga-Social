@@ -2,7 +2,15 @@ let ADD_POST = 'ADD-POST';
 let CHANGE_POST = 'CHANGE-POST';
 export const actionAddPost = () => ({type: ADD_POST})
 export const actionChangePost = (text) => ({type: CHANGE_POST, Newtext: text})
- const profileReducer=(state,action)=> {
+
+let existingStore={
+    PostData: [
+        {postCount: 1, message: 'Hello, how are you?', likesCount: 0},
+        {postCount: 2, message: 'Do you wana like a party?', likesCount: 20}
+    ],
+    TextData: 'Write Post',
+};
+const profileReducer=(state=existingStore,action)=> {
     switch (action.type) {
         case ADD_POST:
         let Push = {

@@ -3,9 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
-import stoke from "./Redax/Stoke";
-
-
+import stoke from "./Redax/redaxStore";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -14,7 +12,7 @@ export let rerenderEntireTree = (state) => {
     root.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App state={stoke.getState()} dispatch={stoke.dispatch.bind(stoke)}  stoke={stoke}
+                <App state={stoke.getState()} dispatch={stoke.dispatch.bind(stoke)} stoke={stoke}
                 />
             </BrowserRouter>
         </React.StrictMode>
@@ -22,4 +20,7 @@ export let rerenderEntireTree = (state) => {
 }
 rerenderEntireTree(stoke.getState())
 
-stoke.encripted(rerenderEntireTree)
+stoke.subscribe(() => {
+    let state = stoke.getState()
+    rerenderEntireTree(state)
+})
