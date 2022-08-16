@@ -35,7 +35,7 @@ switch (action.type) {
         state.MessageText = ''
         break
     default:return state
-    break
+
 }
     return state
 }

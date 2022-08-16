@@ -22,9 +22,9 @@ const Navbar = () => {
         <div className={s.item}>
             <NavLink to='Friends' className={ActiveData}>Friends</NavLink>
             <div>
-                <img src='https://png.pngtree.com/png-vector/20190130/ourlarge/pngtree-cute-girl-avatar-material-png-image_678035.jpg'/>
-                <img src='https://img.lovepik.com/free-png/20210923/lovepik-cute-girl-avatar-png-image_401231841_wh1200.png'/>
-                <img src='https://img.freepik.com/premium-vector/african-american-woman-avatar-with-glasses-portrait-of-a-young-girl-vector-illustration-of-a-face_217290-363.jpg?w=2000'/>
+                <img src='https://png.pngtree.com/png-vector/20190130/ourlarge/pngtree-cute-girl-avatar-material-png-image_678035.jpg'alt={''}/>
+                <img src='https://img.lovepik.com/free-png/20210923/lovepik-cute-girl-avatar-png-image_401231841_wh1200.png'alt={''}/>
+                <img src='https://img.freepik.com/premium-vector/african-american-woman-avatar-with-glasses-portrait-of-a-young-girl-vector-illustration-of-a-face_217290-363.jpg?w=2000' alt={''}/>
             </div>
         </div>
 

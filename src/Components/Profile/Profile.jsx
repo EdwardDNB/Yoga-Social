@@ -1,5 +1,6 @@
-import Posts from './Posts/Posts'
+
 import s from './Profile.module.css'
+import PostsContainer from "./Posts/postsContainer";
 
 const Profile = (props) => {
 
@@ -11,7 +12,7 @@ const Profile = (props) => {
 		<div>
 			ava + description
 		</div>
-		<Posts PostData={props.ProfileBranch.PostData} dispatch={props.dispatch} TextData={props.ProfileBranch.TextData} />
+		<PostsContainer  stoke={props.stoke}/>
 	</div>
 
 }

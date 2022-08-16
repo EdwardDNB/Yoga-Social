@@ -1,7 +1,7 @@
 import Post from './Post/Post'
 import s from './Posts.module.css'
 import React from "react";
-import {actionAddPost, actionChangePost} from "../../../Redax/profile-reducer";
+
 
 
 
@@ -12,12 +12,12 @@ const Posts = (props) => {
 
     let PostMessage = React.createRef()
     let addPost = () => {
-        props.dispatch(actionAddPost())
+       props.addPost()
     }
 
     let ChangeMessage=()=>{
         let text = PostMessage.current.value
-        props.dispatch(actionChangePost(text))
+        props.ChangeMessage(text)
 
     }
 
