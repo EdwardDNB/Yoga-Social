@@ -3,10 +3,10 @@ import Header from './Components/Header/Header';
 import Navbar from './Components/Navbar/Navbar';
 import Profile from './Components/Profile/Profile';
 import {Route,Routes} from "react-router-dom";
-import Dialogs from "./Components/Dialogs/Dialogs";
 import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
+import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 
 
 
@@ -21,8 +21,7 @@ const App = (props) => {
                 <Routes>
                     <Route path="Profile"
                            element={<Profile stoke={props.stoke}/>}/>
-                    <Route path="Dialogs" element={<Dialogs stoke={props.stoke}
-                    />}/>
+                    <Route path="Dialogs" element={<DialogsContainer stoke={props.stoke}/>}/>
                     <Route path="News" element={<News/>}/>
                     <Route path="Music" element={<Music/>}/>
                     <Route path="Settings" element={<Settings/>}/>

@@ -1,22 +1,21 @@
 import s from './Dialogs.module.css'
 import Dialog from "./Dialog/Dialog";
 import React from "react";
-import {actionAddMESSAGE, actionChangeMESSAGE} from "../../Redax/dialogs-reducer";
 import Message from "./Dialog/Message";
 
 
 const Dialogs = (props) => {
-    let state = props.stoke.getState()
-    let DialogElement = state.DialogsBranch.DialogsData.map(d => <Dialog name={d.name} id={d.id}/>)
-    let MessageElement = state.DialogsBranch.MessagesData.map(m => <Message message={m.message}/>)
+
+    let DialogElement = props.DialogsBranch.DialogsData.map(d => <Dialog name={d.name} id={d.id}/>)
+    let MessageElement = props.DialogsBranch.MessagesData.map(m => <Message message={m.message}/>)
 
 
     let addMessage = () => {
-        props.stoke.dispatch(actionAddMESSAGE())
+       props.addMessage()
     }
     let ChangeMessage = (e) => {
         let text = e.target.value
-        props.stoke.dispatch(actionChangeMESSAGE(text))
+       props.ChangeMessage(text)
     }
 
 
@@ -30,7 +29,7 @@ const Dialogs = (props) => {
                 {MessageElement}
             </div>
             <div>
-                <textarea onChange={ChangeMessage} value={state.DialogsBranch.MessageText} rows='10'></textarea>
+                <textarea onChange={ChangeMessage} value={props.MessageText} rows='10'></textarea>
                 <button onClick={addMessage}>Send</button>
             </div>
         </div>
