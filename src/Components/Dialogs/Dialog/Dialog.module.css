@@ -1,0 +1,9 @@
+
+.dialog {
+    display: grid;
+    grid-template-rows: 20px;
+    text-decoration: none;
+    color: gold;
+    padding: 10px;
+}
+

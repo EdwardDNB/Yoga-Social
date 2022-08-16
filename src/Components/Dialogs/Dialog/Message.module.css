@@ -1,0 +1,6 @@
+
+.message {
+    display: grid;
+    grid-template-rows: 20px;
+    padding: 10px;
+}

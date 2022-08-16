@@ -1,5 +1,5 @@
 .dialogs {
-    padding: 20px;
+    padding: 10px;
     display: grid;
     grid-template-columns: 2fr 10fr;
     grid-template-areas: "d m";
@@ -7,20 +7,10 @@
 
 .dialogsitem {
     grid-area: d;
-
+    padding: 10px;
 }
-
-.dialog {
-    text-decoration: none;
-    color: gold;
-    padding: 20px;
-}
-
 .messages {
     grid-area: m;
     padding: 10px;
 }
 
-.message {
-    padding: 10px;
-}
