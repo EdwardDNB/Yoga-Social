@@ -1,6 +1,7 @@
 import s from './Profile.module.css'
-import MyPosts from './MyPosts/MyPosts'
+
 import Desine from "./Desine/Desine";
+import MyPostsConteiner from "./MyPosts/MyPostsConteiner";
 
 
 
@@ -9,7 +10,7 @@ const Profile = (props) => {
 debugger
     return <div className={s.content}>
         <Desine/>
-        <MyPosts PostData={props.ProfilePage.PostData} dispatch={props.dispatch} text={props.ProfilePage.TextData}/>
+        <MyPostsConteiner />
     </div>
 }
 export default Profile
