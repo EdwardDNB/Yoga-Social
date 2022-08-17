@@ -1,27 +1,28 @@
-
-
-
 import {actionAddPost, actionChangePost} from "../../../Redax/profile-reducer";
 import Posts from "./Posts";
+import StoreContext from "../../../StoreContext";
 
 
-
-const PostsContainer = (props) => {
-    let state = props.stoke.getState()
+const PostsContainer = () => {
 
 
+    return <StoreContext.Consumer>{(stoke) => {
+        let state = stoke.getState()
 
-    let addPost = () => {
-        props.stoke.dispatch(actionAddPost())
-    }
 
-    let ChangeMessage = (text) => {
-        props.stoke.dispatch(actionChangePost(text))
+        let addPost = () => {
+            stoke.dispatch(actionAddPost())
+        }
 
-    }
+        let ChangeMessage = (text) => {
+            stoke.dispatch(actionChangePost(text))
 
-    return <Posts ChangeMessage={ChangeMessage} addPost={addPost}
-                  PostData={state.ProfileBranch.PostData} TextData={state.ProfileBranch.TextData}/>
+        }
+
+
+        return <Posts ChangeMessage={ChangeMessage} addPost={addPost}
+                      PostData={state.ProfileBranch.PostData} TextData={state.ProfileBranch.TextData}/>
+    }}</StoreContext.Consumer>
 
 }
 export default PostsContainer

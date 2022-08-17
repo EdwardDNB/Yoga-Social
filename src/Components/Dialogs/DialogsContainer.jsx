@@ -2,27 +2,30 @@
 import Dialogs from "./Dialogs";
 import React from "react";
 import {actionAddMESSAGE, actionChangeMESSAGE} from "../../Redax/dialogs-reducer";
+import StoreContext from "../../StoreContext";
 
 
 
 
-const DialogsContainer = (props) => {
-    let state = props.stoke.getState()
-
-
-
-    let addMessage = () => {
-        props.stoke.dispatch(actionAddMESSAGE())
-    }
-    let ChangeMessage = (text) => {
-
-        props.stoke.dispatch(actionChangeMESSAGE(text))
-    }
-
+const DialogsContainer = () => {
 
     return (
-        <Dialogs ChangeMessage={ChangeMessage} addMessage={addMessage}
-                 MessageText={state.DialogsBranch.MessageText} DialogsBranch={state.DialogsBranch}/>
+       <StoreContext.Consumer>{(stoke)=> {
+
+           let state = stoke.getState()
+
+
+
+           let addMessage = () => {
+               stoke.dispatch(actionAddMESSAGE())
+           }
+           let ChangeMessage = (text) => {
+
+               stoke.dispatch(actionChangeMESSAGE(text))
+           }
+           return <Dialogs ChangeMessage={ChangeMessage} addMessage={addMessage}
+                    MessageText={state.DialogsBranch.MessageText} DialogsBranch={state.DialogsBranch}/>
+       } }</StoreContext.Consumer>
     )
 
 }

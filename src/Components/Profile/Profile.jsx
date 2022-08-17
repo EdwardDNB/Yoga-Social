@@ -2,7 +2,7 @@
 import s from './Profile.module.css'
 import PostsContainer from "./Posts/postsContainer";
 
-const Profile = (props) => {
+const Profile = () => {
 
 
 	return <div className={s.content}>
@@ -12,7 +12,7 @@ const Profile = (props) => {
 		<div>
 			ava + description
 		</div>
-		<PostsContainer  stoke={props.stoke}/>
+		<PostsContainer  />
 	</div>
 
 }

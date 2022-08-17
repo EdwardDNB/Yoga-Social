@@ -4,16 +4,16 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
 import stoke from "./Redax/redaxStore";
+import StoreContext from "./StoreContext";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-export let rerenderEntireTree = (state) => {
+export let rerenderEntireTree = () => {
 
     root.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App state={stoke.getState()} dispatch={stoke.dispatch.bind(stoke)} stoke={stoke}
-                />
+               <StoreContext.Provider value={stoke}><App/></StoreContext.Provider>
             </BrowserRouter>
         </React.StrictMode>
     )

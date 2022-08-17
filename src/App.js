@@ -11,7 +11,7 @@ import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 
 
 
-const App = (props) => {
+const App = () => {
 
     return (
         <div className='app-wrapper'>
@@ -20,8 +20,8 @@ const App = (props) => {
             <div className='app-wrapper-content'>
                 <Routes>
                     <Route path="Profile"
-                           element={<Profile stoke={props.stoke}/>}/>
-                    <Route path="Dialogs" element={<DialogsContainer stoke={props.stoke}/>}/>
+                           element={<Profile />}/>
+                    <Route path="Dialogs" element={<DialogsContainer />}/>
                     <Route path="News" element={<News/>}/>
                     <Route path="Music" element={<Music/>}/>
                     <Route path="Settings" element={<Settings/>}/>
