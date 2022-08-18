@@ -9,21 +9,20 @@ import {sendMessageCreator, updateMessageCreator} from "../Redux/dialogReduser";
 
 const Dialogs = (props) => {
 
-    let state = props.store.getState().DialogsPage
-  let  newMessagesBody=state.newMessagesBody
+  let  newMessagesBody=props.newMessagesBody
     let addPost = () => {
-        props.store.dispatch(sendMessageCreator())
+        props.addPost()
 
     }
 
     let changeMessage = (e) => {
 
         let body = e.target.value
-        props.store.dispatch(updateMessageCreator(body))
+        props.changeMessage(body)
     }
 
-    let MessageElement = state.MessageData.map(m => <Message message={m.message}/>)
-    let DialogsElement = state.DialogsData.map(d => <Dialog name={d.name} id={d.id}/>)
+    let MessageElement = props.MessageData.map(m => <Message message={m.message}/>)
+    let DialogsElement = props.DialogsData.map(d => <Dialog name={d.name} id={d.id}/>)
     return (
         <div className={s.dialogs}>
             <div className={s.dialogItems}>
