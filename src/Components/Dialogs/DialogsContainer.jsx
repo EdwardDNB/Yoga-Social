@@ -10,7 +10,7 @@ import StoreContext from "../../StoreContext";
 const DialogsContainer = () => {
 
     return (
-       <StoreContext.Consumer>{(stoke)=> {
+       <StoreContext.Consumer>{(stoke)=>{
 
            let state = stoke.getState()
 
