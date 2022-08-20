@@ -1,7 +1,7 @@
-import React from "react";
+
 import {sendMessageCreator, updateMessageCreator} from "../Redux/dialogReduser";
 import Dialogs from "./Dialogs";
-import StoreContext from "../../StoreContext";
+/*import StoreContext from "../../StoreContext";*/
 import {connect} from "react-redux";
 
 
@@ -35,10 +35,12 @@ let mapStateToProps = (state) => {
     }
 }
 let mapDispatchToProps = (dispatch) => {
+
     return {
         addPost: () => {
             dispatch(sendMessageCreator())
         }, changeMessage: (body) => {
+
             dispatch(updateMessageCreator(body))
         }
     }

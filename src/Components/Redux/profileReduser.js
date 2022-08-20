@@ -15,23 +15,29 @@ let profileReduser=(state=initialState,action) => {
     switch (action.type)
 
      {
-         case (ADD_POST) :{
+         case ADD_POST :{
             let newPost = {
                 message: state.TextData,
                 likeCounts: 0
             }
-            state.PostData.push(newPost)
-            state.TextData = ''
+            let stateCopy={...state}
+             stateCopy.PostData=[...state.PostData]
+             stateCopy.PostData.push(newPost)
+             stateCopy.TextData = ''
+             return stateCopy
+         }
+
+        case CHANGE_POST: {
+
+            let stateCopy={...state}
+            stateCopy.TextData = action.Newtext
+            return stateCopy
         }
-        break
-        case( CHANGE_POST): {
-            state.TextData = action.Newtext
-        }
-        break
+
          default: return state
 
      }
-return state
+
 }
 
 

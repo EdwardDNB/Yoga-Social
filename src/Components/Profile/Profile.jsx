@@ -6,8 +6,7 @@ import MyPostsConteiner from "./MyPosts/MyPostsConteiner";
 
 
 
-const Profile = (props) => {
-debugger
+const Profile = () => {
     return <div className={s.content}>
         <Desine/>
         <MyPostsConteiner />

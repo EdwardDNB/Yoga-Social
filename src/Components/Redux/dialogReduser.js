@@ -22,18 +22,24 @@ let dialogReduser = (state=initialDialogs, action) => {
     switch (action.type) {
 
 
-        case UPDATE_NEW_MESSAGE_BODY:
-            state.newMessagesBody = action.Newtext
-         break
+        case UPDATE_NEW_MESSAGE_BODY:{
+            let stateCopy={...state}
+            stateCopy.newMessagesBody = action.Newtext
+            return stateCopy
+        }
 
-        case SEND_MESSAGE:
+
+        case SEND_MESSAGE:{
             let body = state.newMessagesBody
-            state.MessageData.push({message: body, id: 6})
-            state.newMessagesBody = ''
-        break
+            let stateCopy={...state}
+            stateCopy.MessageData.push({message: body, id: 6})
+            stateCopy.newMessagesBody = ''
+            return stateCopy
+        }
+
         default:return state
     }
-    return state
+    
 }
 
 
