@@ -7,8 +7,8 @@ let redusers=combineReducers({
     DialogsBranch:dialogsReducer,
     SideBar:sidebarReducer
 })
-let stoke=createStore(redusers)
-export default stoke
+let store=createStore(redusers)
+export default store
 
 
 

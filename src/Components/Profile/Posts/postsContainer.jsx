@@ -1,28 +1,25 @@
 import {actionAddPost, actionChangePost} from "../../../Redax/profile-reducer";
 import Posts from "./Posts";
-import StoreContext from "../../../StoreContext";
+import {connect} from "react-redux";
 
 
-const PostsContainer = () => {
+let mapDispatchToProps = (dispatch) => {
 
-
-    return <StoreContext.Consumer>{(stoke) => {
-        let state = stoke.getState()
-
-
-        let addPost = () => {
-            stoke.dispatch(actionAddPost())
-        }
-
-        let ChangeMessage = (text) => {
-            stoke.dispatch(actionChangePost(text))
-
-        }
-
-
-        return <Posts ChangeMessage={ChangeMessage} addPost={addPost}
-                      PostData={state.ProfileBranch.PostData} TextData={state.ProfileBranch.TextData}/>
-    }}</StoreContext.Consumer>
-
+    return {
+        addPost: () => {
+            dispatch(actionAddPost())
+        },
+        ChangeMessage: (text) =>
+            dispatch(actionChangePost(text))
+    }
 }
+let mapStateToProps = (state) => {
+    return {
+        PostData: state.ProfileBranch.PostData,
+        TextData: state.ProfileBranch.TextData
+    }
+}
+
+
+const PostsContainer = connect(mapStateToProps,mapDispatchToProps)(Posts)
 export default PostsContainer

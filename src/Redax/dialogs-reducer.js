@@ -23,20 +23,22 @@ let existingStore={
     MessageText: 'Write Message',
 };
 const dialogsReducer=(state=existingStore,action)=>{
-switch (action.type) {
-    case CHANGE_MESSAGE:
-        state.MessageText = action.Newtext
-    break
-    case ADD_MESSAGE:
+    switch (action.type) {
+    case CHANGE_MESSAGE:{
+        let stateCopy={...state}
+        stateCopy.MessageText = action.Newtext
+        return stateCopy}
+    case ADD_MESSAGE:{
         let Push = {id: 7, message: state.MessageText}
         let Name = {name: 'Edward', id: 7}
-        state.MessagesData.push(Push)
-        state.DialogsData.push(Name)
-        state.MessageText = ''
-        break
+        let stateCopy={...state}
+        stateCopy.MessagesData.push(Push)
+        stateCopy.DialogsData.push(Name)
+        stateCopy.MessageText = ''
+        return stateCopy}
     default:return state
 
 }
-    return state
+
 }
 export default dialogsReducer

@@ -1,6 +1,6 @@
 import Post from './Post/Post'
 import s from './Posts.module.css'
-import React from "react";
+
 
 
 
@@ -10,13 +10,13 @@ const Posts = (props) => {
     let PostElement = props.PostData.map(p => <Post postCount={p.postCount} message={p.message}
                                                     likesCount={p.likesCount}/>)
 
-    let PostMessage = React.createRef()
+
     let addPost = () => {
        props.addPost()
     }
 
-    let ChangeMessage=()=>{
-        let text = PostMessage.current.value
+    let ChangeMessage=(e)=>{
+        let text = e.target.value
         props.ChangeMessage(text)
 
     }
@@ -26,7 +26,7 @@ const Posts = (props) => {
         <div>
             New post
             <div>
-                <textarea onChange={ChangeMessage}  value={props.TextData} ref={PostMessage} cols="30" rows="10"></textarea>
+                <textarea onChange={ChangeMessage}  value={props.TextData}  cols="30" rows="10"></textarea>
                 <button onClick={addPost}>Send</button>
 
             </div>

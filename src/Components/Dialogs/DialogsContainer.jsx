@@ -1,32 +1,25 @@
-
 import Dialogs from "./Dialogs";
-import React from "react";
 import {actionAddMESSAGE, actionChangeMESSAGE} from "../../Redax/dialogs-reducer";
-import StoreContext from "../../StoreContext";
 
+import {connect} from "react-redux";
 
-
-
-const DialogsContainer = () => {
-
-    return (
-       <StoreContext.Consumer>{(stoke)=>{
-
-           let state = stoke.getState()
-
-
-
-           let addMessage = () => {
-               stoke.dispatch(actionAddMESSAGE())
-           }
-           let ChangeMessage = (text) => {
-
-               stoke.dispatch(actionChangeMESSAGE(text))
-           }
-           return <Dialogs ChangeMessage={ChangeMessage} addMessage={addMessage}
-                    MessageText={state.DialogsBranch.MessageText} DialogsBranch={state.DialogsBranch}/>
-       } }</StoreContext.Consumer>
-    )
-
+let mapDispatchToProps = (dispatch) => {
+    return {
+        addMessage: () => {
+            dispatch(actionAddMESSAGE())
+        },
+        ChangeMessage: (text) => {
+            dispatch(actionChangeMESSAGE(text))
+        }
+    }
 }
+
+let mapStateToProps = (state) => {
+    return {
+        MessageText: state.DialogsBranch.MessageText,
+        DialogsBranch: state.DialogsBranch
+    }
+}
+
+const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs)
 export default DialogsContainer
