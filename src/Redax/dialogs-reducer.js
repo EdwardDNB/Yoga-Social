@@ -29,9 +29,11 @@ const dialogsReducer=(state=existingStore,action)=>{
         stateCopy.MessageText = action.Newtext
         return stateCopy}
     case ADD_MESSAGE:{
-        let Push = {id: 7, message: state.MessageText}
-        let Name = {name: 'Edward', id: 7}
         let stateCopy={...state}
+        stateCopy.MessagesData=[...state.MessagesData]
+        stateCopy.DialogsData=[...state.DialogsData]
+        let Push = {id: 7, message: stateCopy.MessageText}
+        let Name = {name: 'Edward', id: 7}
         stateCopy.MessagesData.push(Push)
         stateCopy.DialogsData.push(Name)
         stateCopy.MessageText = ''

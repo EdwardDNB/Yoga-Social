@@ -14,12 +14,13 @@ const profileReducer = (state = existingStore, action) => {
 
     switch (action.type) {
         case ADD_POST: {
+            let stateCopy = {...state}
+            stateCopy.PostData=[...state.PostData]
             let newPost = {
                 postCount: 3,
-                message: state.TextData,
+                message: stateCopy.TextData,
                 likesCount: 0
             }
-            let stateCopy = {...state}
             stateCopy.PostData.push(newPost)
             stateCopy.TextData = ''
             return stateCopy
