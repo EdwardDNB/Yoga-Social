@@ -19,24 +19,18 @@ let initialDialogs={ DialogsData: [
     ],
     newMessagesBody: 'Write Messages',}
 let dialogReduser = (state=initialDialogs, action) => {
-    switch (action.type) {
-
-
-        case UPDATE_NEW_MESSAGE_BODY:{
-            let stateCopy={...state}
-            stateCopy.newMessagesBody = action.Newtext
-            return stateCopy
-        }
-
-
-        case SEND_MESSAGE:{
+      switch (action.type) {
+        case UPDATE_NEW_MESSAGE_BODY:
+            return{
+                ...state,newMessagesBody : action.newText
+            }
+        case SEND_MESSAGE:
             let body = state.newMessagesBody
-            let stateCopy={...state}
-            stateCopy.MessageData.push({message: body, id: 6})
-            stateCopy.newMessagesBody = ''
-            return stateCopy
-        }
-
+            return{
+                ...state,
+                MessageData:[...state.MessageData,{message: body, id: 6}],
+                newMessagesBody : ''
+            }
         default:return state
     }
     
@@ -44,6 +38,6 @@ let dialogReduser = (state=initialDialogs, action) => {
 
 
 export const sendMessageCreator = () => ({type: SEND_MESSAGE})
-export const updateMessageCreator = (body) => ({type: UPDATE_NEW_MESSAGE_BODY, Newtext: body})
+export const updateMessageCreator = (body) => ({type: UPDATE_NEW_MESSAGE_BODY, newText: body})
 
 export default dialogReduser

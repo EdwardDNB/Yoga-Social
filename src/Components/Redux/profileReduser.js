@@ -1,7 +1,7 @@
 const ADD_POST = 'ADD-POST';
 const CHANGE_POST = 'CHANGE-POST';
 export const addPostActionCreator = () => ({type: ADD_POST})
-export const changeActionCreator = (text) => ({ type: CHANGE_POST, Newtext: text})
+export const changeActionCreator = (text) => ({ type: CHANGE_POST, newText: text})
 let initialState={
         PostData: [
             {message: 'How are you?', likeCounts: 0},
@@ -16,22 +16,12 @@ let profileReduser=(state=initialState,action) => {
 
      {
          case ADD_POST :{
-            let newPost = {
-                message: state.TextData,
-                likeCounts: 0
-            }
-            let stateCopy={...state}
-             stateCopy.PostData=[...state.PostData]
-             stateCopy.PostData.push(newPost)
-             stateCopy.TextData = ''
-             return stateCopy
+             return{...state, PostData:[...state.PostData, {message: state.TextData, likeCounts: 0}],
+                 TextData : ''}
          }
 
         case CHANGE_POST: {
-
-            let stateCopy={...state}
-            stateCopy.TextData = action.Newtext
-            return stateCopy
+            return{...state, TextData : action.newText}
         }
 
          default: return state
