@@ -1,10 +1,9 @@
-
 let CHANGE_MESSAGE = 'CHANGE-MESSAGE';
 let ADD_MESSAGE = 'ADD-MESSAGE';
 export const actionAddMESSAGE = () => ({type: ADD_MESSAGE})
 export const actionChangeMESSAGE = (text) => ({type: CHANGE_MESSAGE, Newtext: text})
 
-let existingStore={
+let existingStore = {
     DialogsData: [
         {name: 'Ruslan', id: 1},
         {name: 'Ludmila', id: 2},
@@ -22,25 +21,23 @@ let existingStore={
     ],
     MessageText: 'Write Message',
 };
-const dialogsReducer=(state=existingStore,action)=>{
+const dialogsReducer = (state = existingStore, action) => {
     switch (action.type) {
-    case CHANGE_MESSAGE:{
-        let stateCopy={...state}
-        stateCopy.MessageText = action.Newtext
-        return stateCopy}
-    case ADD_MESSAGE:{
-        let stateCopy={...state}
-        stateCopy.MessagesData=[...state.MessagesData]
-        stateCopy.DialogsData=[...state.DialogsData]
-        let Push = {id: 7, message: stateCopy.MessageText}
-        let Name = {name: 'Edward', id: 7}
-        stateCopy.MessagesData.push(Push)
-        stateCopy.DialogsData.push(Name)
-        stateCopy.MessageText = ''
-        return stateCopy}
-    default:return state
+        case CHANGE_MESSAGE: {
+            return {...state, MessageText: action.Newtext}
 
-}
+        }
+        case ADD_MESSAGE: {
+            return {
+                ...state, MessagesData: [...state.MessagesData, {id: 7, message: state.MessageText}],
+                DialogsData: [...state.DialogsData, {name: 'Edward', id: 7}], MessageText: ''
+            }
+
+        }
+        default:
+            return state
+
+    }
 
 }
 export default dialogsReducer
