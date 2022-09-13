@@ -2,12 +2,14 @@ import {combineReducers, createStore} from "redux";
 import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
-let redusers=combineReducers({
+import usersReducer from "./users-reducer";
+let reducers=combineReducers({
     ProfileBranch:profileReducer,
     DialogsBranch:dialogsReducer,
-    SideBar:sidebarReducer
+    SideBar:sidebarReducer,
+    usersBranch:usersReducer
 })
-let store=createStore(redusers)
+let store=createStore(reducers)
 export default store
 
 
