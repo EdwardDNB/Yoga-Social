@@ -13,10 +13,11 @@ const axiosConfig={
 }
 class UsersAPI extends React.Component{
 componentDidMount() {
-axios.get('/users',{...axiosConfig}).then((request)=>{
-    console.log(request)
-this.props.addUsers(request.data.items)
-})
+    if(this.props.users.length===0){
+        axios.get('/users',{...axiosConfig}).then((request)=>{
+        this.props.addUsers(request.data.items)
+    })}
+
 }
 render() {
     return <Users users={this.props.users}

@@ -84,8 +84,7 @@ const usersReducer = (state = existingStore, action) => {
 
         case ADD_users: {
             return {
-                ...state, users: [...state.users, ...action.users],
-
+                ...state, users:action.users
             }
 
         }
