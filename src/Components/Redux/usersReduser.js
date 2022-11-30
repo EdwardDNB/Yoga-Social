@@ -10,8 +10,8 @@ export const setClickPageAC = (p) => ({type: set_ClickPageAC, p})
 export const setTotalCountAC = (totalCount) => ({type: set_totalCountAC, totalCount})
 let initialState = {
     users: [],
-    pageSize: 10,
-    count:2,
+    pageSize: 100,
+    count:1,
     totalCount:100,
 }
 let usersReduser = (state = initialState, action) => {
