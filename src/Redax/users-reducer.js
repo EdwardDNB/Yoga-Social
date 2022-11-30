@@ -7,7 +7,7 @@ export const unfollowedAC = (userID) => ({type: UNFOLLOWED, userID})
 
 let existingStore = {
     users: [
-        {
+        /*{
             name: 'Ruslan',
             id: 1,
             location: {city: 'Kiev', country: 'Ukraine'},
@@ -48,8 +48,9 @@ let existingStore = {
             location: {city: 'Kiev', country: 'Ukraine'},
             followed: false,
             avatar: 'https://bestprofilepictures.com/wp-content/uploads/2021/04/Cute-Anime-Boy-Profile-Picture.jpg'
-        }
-    ]
+        }*/
+    ],
+
 };
 const usersReducer = (state = existingStore, action) => {
 

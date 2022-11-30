@@ -1,0 +1,9 @@
+Key APP b9addcf5-3c00-459c-a722-4417794f0ffc
+localhost:3000-3003
+export const instance = axios.create({
+    withCredentials: true,
+    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
+    headers:     {
+        "API-KEY": "b9addcf5-3c00-459c-a722-4417794f0ffc"
+    }
+});
