@@ -50,7 +50,9 @@ let existingStore = {
             avatar: 'https://bestprofilepictures.com/wp-content/uploads/2021/04/Cute-Anime-Boy-Profile-Picture.jpg'
         }*/
     ],
-
+    totalCount:100,
+    page:1,
+    count:10
 };
 const usersReducer = (state = existingStore, action) => {
 

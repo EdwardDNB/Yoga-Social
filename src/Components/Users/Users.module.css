@@ -1,3 +1,9 @@
 .content img{
 width: 100px;
 }
+.selectedPageNum{
+    font-weight: bold;
+}
+.PageNum{
+   cursor: pointer;
+}

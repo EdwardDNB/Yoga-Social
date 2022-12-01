@@ -4,37 +4,45 @@ import React from "react";
 import {actionAddUsers, followedAC, unfollowedAC} from "../../Redax/users-reducer";
 import axios from "axios";
 
-const axiosConfig={
+const axiosConfig = {
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-    headers:     {
+    headers: {
         "API-KEY": "b9addcf5-3c00-459c-a722-4417794f0ffc"
     }
 }
-class UsersAPI extends React.Component{
-componentDidMount() {
-    if(this.props.users.length===0){
-        axios.get('/users',{...axiosConfig}).then((request)=>{
-        this.props.addUsers(request.data.items)
-    })}
 
+class UsersAPI extends React.Component {
+    componentDidMount() {
+        if (this.props.users.length === 0) {
+            axios.get(`/users?count=${this.props.count}&page=${this.props.page}`, {...axiosConfig})
+                .then((request) => {
+                    this.props.addUsers(request.data.items
+                    )
+                })
+        }
+
+    }
+
+    render() {
+        return <Users users={this.props.users}
+                      follow={this.props.follow}
+                      unfollow={this.props.unfollow}
+                      totalCount={this.props.totalCount}
+                      count={this.props.count}
+                      page={this.props.page}
+
+        />
+    }
 }
-render() {
-    return <Users users={this.props.users}
-                  follow={this.props.follow}
-                  unfollow={this.props.unfollow}/>
-}
-}
-
-
-
-
-
 
 
 let mapStateToProps = (state) => {
     return {
-        users:state.usersBranch.users
+        users: state.usersBranch.users,
+        totalCount:state.usersBranch.totalCount,
+        page:state.usersBranch.page,
+        count:state.usersBranch.count
     }
 }
 
@@ -52,5 +60,5 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-const UsersContainer = connect(mapStateToProps,mapDispatchToProps)(UsersAPI)
+const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPI)
 export default UsersContainer
