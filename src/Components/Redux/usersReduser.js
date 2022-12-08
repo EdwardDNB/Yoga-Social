@@ -3,16 +3,19 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 const set_ClickPageAC = 'setClickPageAC';
 const set_totalCountAC = 'set_totalCountAC';
+const set_FetchingCountAC = 'set_FetchingCountAC';
 export const followAC = (userId) => ({type: FOLLOW, userId})
 export const unfollowAC = (userId) => ({type: UNFOLLOW, userId})
 export const setUsersAC = (users) => ({type: SET_USERS, users})
 export const setClickPageAC = (p) => ({type: set_ClickPageAC, p})
 export const setTotalCountAC = (totalCount) => ({type: set_totalCountAC, totalCount})
+export const setFetchingCountAC = (isFetching) => ({type: set_FetchingCountAC, isFetching})
 let initialState = {
     users: [],
     pageSize: 100,
     count:1,
     totalCount:100,
+    isFetching:false
 }
 let usersReduser = (state = initialState, action) => {
 
@@ -46,6 +49,9 @@ let usersReduser = (state = initialState, action) => {
         }
         case set_totalCountAC: {
             return {...state,totalCount:action.totalCount}
+        }
+        case set_FetchingCountAC: {
+            return {...state,isFetching:action.isFetching}
         }
         default:
             return state

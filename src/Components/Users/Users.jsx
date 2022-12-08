@@ -10,7 +10,7 @@ const Users=(props)=>  {
         }
         return <div>
             {pages.map((p) => {
-                return <span className={props.count === p ? styles.activePage : styles.unActivePage}
+                return <span key={p} className={props.count === p ? styles.activePage : styles.unActivePage}
                              onClick={(e) => {
                                 props.clickEvent(p)
                              }}
