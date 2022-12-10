@@ -1,12 +1,12 @@
 import {connect} from "react-redux";
 import Users from "./Users";
 import {
-    followAC,
-    setClickPageAC,
-    setFetchingCountAC,
-    setTotalCountAC,
-    setUsersAC,
-    unfollowAC
+    follow,
+    setClickPage,
+    setFetchingCount,
+    setTotalCount,
+    setUsers,
+    unfollow
 } from "../Redux/usersReduser";
 import React from "react";
 import axios from "axios";
@@ -27,7 +27,7 @@ class UsersApiContainer extends React.Component {
         axios.get(`/users?page=${this.props.count}&count=${this.props.pageSize}`, {...axiosDefault})
             .then(response => {
                     this.props.setFetchingCount(true)
-                    this.props.totalCount(response.data.totalCount)
+                    this.props.setTotalCount(response.data.totalCount)
                     this.props.setUsers(response.data.items)
                 }
             ).then(() => {
@@ -37,7 +37,7 @@ class UsersApiContainer extends React.Component {
 
     clickEvent = (page) => {
         this.props.setFetchingCount(true)
-        this.props.clickPage(page)
+        this.props.setClickPage(page)
         axios.get(`/users?page=${page}&count=${this.props.pageSize}`, {...axiosDefault})
             .then(response => this.props.setUsers(response.data.items))
             .then(() => this.props.setFetchingCount(false))
@@ -69,7 +69,7 @@ let mapStateToProps = (state) => {
         isFetching: state.usersPage.isFetching
     }
 }
-let mapDispatchToProps = (dispach) => {
+/*let mapDispatchToProps = (dispach) => {
     return {
         follow: (userId) => {
             dispach(followAC(userId))
@@ -91,8 +91,10 @@ let mapDispatchToProps = (dispach) => {
         }
     }
 
-}
+}*/
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApiContainer)
+const UsersContainer = connect(mapStateToProps, {
+    follow,unfollow,setUsers,setClickPage,setTotalCount,setFetchingCount
+})(UsersApiContainer)
 
 export default UsersContainer

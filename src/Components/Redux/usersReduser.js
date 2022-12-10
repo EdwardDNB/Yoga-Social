@@ -4,12 +4,12 @@ const SET_USERS = 'SET_USERS';
 const set_ClickPageAC = 'setClickPageAC';
 const set_totalCountAC = 'set_totalCountAC';
 const set_FetchingCountAC = 'set_FetchingCountAC';
-export const followAC = (userId) => ({type: FOLLOW, userId})
-export const unfollowAC = (userId) => ({type: UNFOLLOW, userId})
-export const setUsersAC = (users) => ({type: SET_USERS, users})
-export const setClickPageAC = (p) => ({type: set_ClickPageAC, p})
-export const setTotalCountAC = (totalCount) => ({type: set_totalCountAC, totalCount})
-export const setFetchingCountAC = (isFetching) => ({type: set_FetchingCountAC, isFetching})
+export const follow = (userId) => ({type: FOLLOW, userId})
+export const unfollow = (userId) => ({type: UNFOLLOW, userId})
+export const setUsers= (users) => ({type: SET_USERS, users})
+export const setClickPage = (p) => ({type: set_ClickPageAC, p})
+export const setTotalCount = (totalCount) => ({type: set_totalCountAC, totalCount})
+export const setFetchingCount = (isFetching) => ({type: set_FetchingCountAC, isFetching})
 let initialState = {
     users: [],
     pageSize: 100,
