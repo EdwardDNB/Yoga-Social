@@ -12,7 +12,7 @@ import React from "react";
 import axios from "axios";
 import Preloader from "../../Common/Loader";
 
-const axiosDefault = {
+export const axiosDefault = {
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0',
     headers: {

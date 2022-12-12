@@ -1,3 +1,4 @@
+import PhotoDefault from'../Users/userFoto.webp'
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -11,7 +12,8 @@ export const setClickPage = (p) => ({type: set_ClickPageAC, p})
 export const setTotalCount = (totalCount) => ({type: set_totalCountAC, totalCount})
 export const setFetchingCount = (isFetching) => ({type: set_FetchingCountAC, isFetching})
 let initialState = {
-    users: [],
+    users: [{photos:{small:PhotoDefault}}
+    ],
     pageSize: 100,
     count:1,
     totalCount:100,

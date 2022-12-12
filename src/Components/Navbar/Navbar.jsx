@@ -5,7 +5,7 @@ const Navbar = () => {
     let ActiveData = navData => navData.isActive ? s.active : s.item
     return <nav className={s.nav}>
         <div className={s.item}>
-            <NavLink to="profile" className={ActiveData}>Profile</NavLink>
+            <NavLink to="profile"  className={ActiveData}>Profile</NavLink>
         </div>
         <div className={s.item}>
             <NavLink to="dialogs" className={ActiveData}>Messages</NavLink>

@@ -1,15 +1,5 @@
-import s from './Profile.module.css'
 
-import Desine from "./Desine/Desine";
-import MyPostsConteiner from "./MyPosts/MyPostsConteiner";
-
-
-
-
-const Profile = () => {
-    return <div className={s.content}>
-        <Desine/>
-        <MyPostsConteiner />
-    </div>
+const Profile=(props)=>{
+    return
 }
 export default Profile
