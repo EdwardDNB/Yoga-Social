@@ -2,16 +2,15 @@ import {connect} from 'react-redux';
 import Users from './Users';
 import React from 'react';
 import {
-  actionAddUsers,
-  followedAC,
-  onFetchingAC,
-  onPageClickAC,
-  onTotalCountAC,
-  unfollowedAC,
+  addTotalCount,
+  addUsers,
+  follow,
+  onFetching,
+  onPageClick,
+  unfollow,
 } from '../../Redax/users-reducer';
 import axios from 'axios';
 import Preloader from '../Preloader/Preloader';
-import PreloaderImg from '../Pictures/Infinity-1s-200px.svg';
 
 const axiosConfig = {
   withCredentials: true,
@@ -21,7 +20,7 @@ const axiosConfig = {
   },
 };
 
-class UsersAPI extends React.Component {
+class UsersContainer extends React.Component {
   componentDidMount() {
     axios
       .get(`/users?count=${this.props.count}&page=${this.props.page}`, {...axiosConfig})
@@ -60,7 +59,6 @@ class UsersAPI extends React.Component {
           count={this.props.count}
           page={this.props.page}
           eventClick={this.eventClick}
-          /* eventClick={(pageNum) => this.eventClick(pageNum)}*/
         />
       </>
     );
@@ -77,28 +75,11 @@ let mapStateToProps = state => {
   };
 };
 
-let mapDispatchToProps = dispatch => {
-  return {
-    addUsers: users => {
-      dispatch(actionAddUsers(users));
-    },
-    follow: userID => {
-      dispatch(followedAC(userID));
-    },
-    unfollow: userID => {
-      dispatch(unfollowedAC(userID));
-    },
-    onPageClick: pageNum => {
-      dispatch(onPageClickAC(pageNum));
-    },
-    addTotalCount: totalCount => {
-      dispatch(onTotalCountAC(totalCount));
-    },
-    onFetching: isFetching => {
-      dispatch(onFetchingAC(isFetching));
-    },
-  };
-};
-
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPI);
-export default UsersContainer;
+export default connect(mapStateToProps, {
+  addUsers,
+  follow,
+  unfollow,
+  onPageClick,
+  addTotalCount,
+  onFetching,
+})(UsersContainer);

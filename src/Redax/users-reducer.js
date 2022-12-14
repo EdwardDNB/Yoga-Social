@@ -1,19 +1,19 @@
 let FOLLOWED = 'FOLLOWED';
 let UNFOLLOWED = 'UNFOLLOWED';
 let ADD_users = 'ADD-users';
-let onPageClick = 'onPageClick';
-let onTotalCount = 'onTotalCount';
-let onFetching = 'onFetching';
-export const actionAddUsers = users => ({type: ADD_users, users});
-export const followedAC = userID => ({type: FOLLOWED, userID});
-export const unfollowedAC = userID => ({type: UNFOLLOWED, userID});
-export const onPageClickAC = pageNum => ({type: onPageClick, pageNum});
-export const onTotalCountAC = totalCount => ({type: onTotalCount, totalCount});
-export const onFetchingAC = isFetching => ({type: onFetching, isFetching});
+let on_PageClick = 'onPageClick';
+let on_TotalCount = 'onTotalCount';
+let on_Fetching = 'onFetching';
+export const addUsers = users => ({type: ADD_users, users});
+export const follow = userID => ({type: FOLLOWED, userID});
+export const unfollow = userID => ({type: UNFOLLOWED, userID});
+export const onPageClick = pageNum => ({type: on_PageClick, pageNum});
+export const addTotalCount = totalCount => ({type: on_TotalCount, totalCount});
+export const onFetching = isFetching => ({type: on_Fetching, isFetching});
 
 let existingStore = {
   users: [
-    /* {
+    {
       name: 'Ruslan',
       id: 1,
       followed: true,
@@ -40,7 +40,6 @@ let existingStore = {
     {
       name: 'Egor',
       id: 5,
-
       followed: true,
       photos: {large: null, small: null},
     },
@@ -50,7 +49,8 @@ let existingStore = {
 
       followed: false,
       avatar: null,
-    },*/
+      photos: {large: null, small: null},
+    },
   ],
   totalCount: 6,
   page: 1,
@@ -88,19 +88,19 @@ const usersReducer = (state = existingStore, action) => {
         users: action.users,
       };
     }
-    case onTotalCount: {
+    case on_TotalCount: {
       return {
         ...state,
         totalCount: action.totalCount,
       };
     }
-    case onPageClick: {
+    case on_PageClick: {
       return {
         ...state,
         page: action.pageNum,
       };
     }
-    case onFetching: {
+    case on_Fetching: {
       return {
         ...state,
         isFetching: action.isFetching,
