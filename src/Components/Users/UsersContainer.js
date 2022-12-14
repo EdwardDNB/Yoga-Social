@@ -12,7 +12,7 @@ import {
 import axios from 'axios';
 import Preloader from '../Preloader/Preloader';
 
-const axiosConfig = {
+export const axiosConfig = {
   withCredentials: true,
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',
   headers: {
