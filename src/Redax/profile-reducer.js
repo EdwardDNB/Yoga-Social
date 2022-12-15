@@ -23,6 +23,7 @@ let existingStore = {
       youtube: null,
       github: 'github.com/EdwardDNB ',
       mainLink: null,
+      linkedIn: null,
     },
     lookingForAJob: true,
     lookingForAJobDescription: 'Finding Work FrontEnd',
