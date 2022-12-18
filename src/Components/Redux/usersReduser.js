@@ -12,7 +12,7 @@ export const setClickPage = (p) => ({type: set_ClickPageAC, p})
 export const setTotalCount = (totalCount) => ({type: set_totalCountAC, totalCount})
 export const setFetchingCount = (isFetching) => ({type: set_FetchingCountAC, isFetching})
 let initialState = {
-    users: [{photos:{small:PhotoDefault}}
+    users: [{photos:{small:PhotoDefault,large:PhotoDefault}}
     ],
     pageSize: 100,
     count:1,

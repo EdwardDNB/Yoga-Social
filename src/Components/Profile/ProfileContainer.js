@@ -6,14 +6,14 @@ import {connect} from "react-redux";
 import axios from "axios";
 import {axiosDefault} from "../Users/UsersConteiner";
 import {setUserProfile} from "../Redux/profileReduser";
-
+import { useParams } from 'react-router-dom'
 
 
 
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        axios.get(`/profile/${this.props.userProfile.userId}`, {...axiosDefault})
+        axios.get(`/profile/${this.props.param.userId}`, {...axiosDefault})
             .then(response => {
                 for (let key in response.data.contacts) {
                     if (response.data.contacts[key] !== null) {
@@ -28,7 +28,6 @@ class ProfileContainer extends React.Component {
     }
 
     render=()=> {
-        /*console.log(this.props)*/
         return <>
         <Desine userProfile={this.props.userProfile}/>
         <MyPostsConteiner />
@@ -37,6 +36,11 @@ class ProfileContainer extends React.Component {
 
 
 }
+const TakeParams = (props) => {
+    return <ProfileContainer {...props} param={useParams()} />
+}
+
+
 
 let mapStateToProps=(state)=> {
     return{
@@ -44,7 +48,6 @@ let mapStateToProps=(state)=> {
 
     }}
 
-
 export default connect(mapStateToProps,{
     setUserProfile
-})(ProfileContainer)
+})(TakeParams)

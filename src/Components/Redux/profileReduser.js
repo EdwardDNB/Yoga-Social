@@ -25,7 +25,7 @@ let initialState = {
             youtube: null,
             mainLink: null,
         },
-        userId: 2,
+        userId: 1,
         lookingForAJob: true,
         lookingForAJobDescription: 'Frontend Developer',
         fullName: 'Edward'

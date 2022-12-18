@@ -1,6 +1,7 @@
 import s from './Desine.module.css'
 import Hand_NotOkImg from '../../Asets/Hand_NotOk.png'
 import Hand_OkImg from '../../Asets/Hand_Ok.png'
+import PhotoDefault from "../../Users/userFoto.webp";
 
 
 const Desine = (props) => {
@@ -9,7 +10,7 @@ const Desine = (props) => {
             <img src='https://www.lifegate.com/app/uploads/mare-fa-bene-2.jpg'/>
         </div>
         <div className={s.profile}>
-            <div><img src={props.userProfile.photos.small}/></div>
+            <div><img src={!props.userProfile.photos.large ? PhotoDefault : props.userProfile.photos.large}/></div>
             <div className={s.properties}>
                 <h3>Contacts</h3>
                 <ul>
