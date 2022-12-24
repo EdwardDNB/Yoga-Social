@@ -44,7 +44,6 @@ const getFilter=()=>{
     }
 }
 getFilter()
-console.log(initialState)
 let profileReduser = (state = initialState, action) => {
 
 
