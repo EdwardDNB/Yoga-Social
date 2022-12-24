@@ -1,7 +1,8 @@
 import ProfileImg from '../Pictures/istockphoto-160797335-612x612.jpg';
+import DefaultImg from '../Pictures/UserDefaultPicGirl.jpg';
 import s from './Profile.module.css';
-import FacebookImg from './../Pictures/Facebook_f_logo_(2019).svg';
 import React from 'react';
+import Contacts from './Contacts';
 
 const Profile = props => {
   for (let key in props.ProfileData.contacts) {
@@ -11,19 +12,8 @@ const Profile = props => {
       }
     }
   }
-  const Contact = props => {
-    if (props.v !== null) {
-      return (
-        <span>
-          <a href={props.v}>
-            <img src={FacebookImg} alt={props.k} />
-          </a>
-        </span>
-      );
-    }
-  };
   let contactsElement = Object.entries(props.ProfileData.contacts).map((v, key) => (
-    <Contact key={key} k={v[0]} v={v[1]} />
+    <Contacts key={key} k={v[0]} v={v[1]} />
   ));
 
   //console.log(props.ProfileData.contacts);
@@ -34,7 +24,10 @@ const Profile = props => {
       </div>
       <div>
         <div className={s.content}>
-          <img src={props.ProfileData.photos.large} />
+          <img
+            src={props.ProfileData.photos.large ? props.ProfileData.photos.large : DefaultImg}
+            alt={''}
+          />
         </div>
         <h3>{props.ProfileData.fullName}</h3>
         <div className={s.contacts}>{contactsElement}</div>

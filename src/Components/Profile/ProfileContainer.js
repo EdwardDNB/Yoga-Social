@@ -7,11 +7,12 @@ import {axiosConfig} from '../Users/UsersContainer';
 import Preloader from '../Preloader/Preloader';
 import {onFetching} from '../../Redax/users-reducer';
 import {setProfileData} from '../../Redax/profile-reducer';
+import {useParams} from 'react-router-dom';
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
     axios
-      .get(`/profile/${this.props.ProfileData.userId}`, {
+      .get(`/profile/${this.props.params.userId}`, {
         ...axiosConfig,
       })
       .then(request => {
@@ -33,6 +34,10 @@ class ProfileContainer extends React.Component {
     );
   }
 }
+let Params = props => {
+  return <ProfileContainer {...props} params={useParams()} />;
+};
+
 let mapStateToProps = state => {
   return {
     ProfileData: state.ProfileBranch.ProfileData,
@@ -42,4 +47,4 @@ let mapStateToProps = state => {
 export default connect(mapStateToProps, {
   onFetching,
   setProfileData,
-})(ProfileContainer);
+})(Params);
