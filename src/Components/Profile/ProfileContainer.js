@@ -3,26 +3,26 @@ import Desine from "./Desine/Desine";
 import MyPostsConteiner from "./MyPosts/MyPostsConteiner";
 import React from "react";
 import {connect} from "react-redux";
-import axios from "axios";
-import {axiosDefault} from "../Users/UsersConteiner";
 import {setUserProfile} from "../Redux/profileReduser";
 import { useParams } from 'react-router-dom'
+import {profileApi} from "../../API/API";
+
 
 
 
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        axios.get(`/profile/${this.props.param.userId}`, {...axiosDefault})
-            .then(response => {
-                for (let key in response.data.contacts) {
-                    if (response.data.contacts[key] !== null) {
-                        if (!response.data.contacts[key].includes('https://')) {
-                            response.data.contacts[key] = 'https://'.concat(response.data.contacts[key])
+        profileApi.getProfile(this.props.param.userId)
+            .then(data => {
+                for (let key in data.contacts) {
+                    if (data.contacts[key]) {
+                        if (!data.contacts[key].includes('https://')) {
+                            data.contacts[key] = 'https://'.concat(data.contacts[key])
                         }
                     }
                 }
-                this.props.setUserProfile(response.data)
+                this.props.setUserProfile(data)
             })
 
     }

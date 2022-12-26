@@ -9,8 +9,8 @@ import {
     unfollow
 } from "../Redux/usersReduser";
 import React from "react";
-import axios from "axios";
 import Preloader from "../../Common/Loader";
+import {usersApi} from "../../API/API";
 
 export const axiosDefault = {
     withCredentials: true,
@@ -24,11 +24,10 @@ class UsersApiContainer extends React.Component {
 
 
     componentDidMount() {
-        axios.get(`/users?page=${this.props.count}&count=${this.props.pageSize}`, {...axiosDefault})
-            .then(response => {
+        usersApi.getUsers(this.props.count,this.props.pageSize).then(data => {
                     this.props.setFetchingCount(true)
-                    this.props.setTotalCount(response.data.totalCount)
-                    this.props.setUsers(response.data.items)
+                    this.props.setTotalCount(data.totalCount)
+                    this.props.setUsers(data.items)
                 }
             ).then(() => {
             this.props.setFetchingCount(false)
@@ -38,7 +37,7 @@ class UsersApiContainer extends React.Component {
     clickEvent = (page) => {
         this.props.setFetchingCount(true)
         this.props.setClickPage(page)
-        axios.get(`/users?page=${page}&count=${this.props.pageSize}`, {...axiosDefault})
+        usersApi.getUsers(page,this.props.pageSize)
             .then(response => this.props.setUsers(response.data.items))
             .then(() => this.props.setFetchingCount(false))
 

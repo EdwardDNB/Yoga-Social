@@ -3,6 +3,7 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import axios from "axios";
 import {axiosDefault} from "./UsersConteiner";
+import {usersApi} from "../../API/API";
 
 
 const Users=(props)=>  {
@@ -27,17 +28,16 @@ const Users=(props)=>  {
                 </div>
                 <div>
                     {u.followed ? <button onClick={() => {
-                        axios.delete(`/follow/${u.id}`, {...axiosDefault})
-                            .then(response => {
-                                    if(response.data.resultCode===0){ props.unfollow(u.id)}
+                        usersApi.getFollow(u.id)
+                            .then(data => {
+                                    if(data.resultCode===0){ props.unfollow(u.id)}
                                 }
                             )
                     }}
                     >Unfollow</button> : <button onClick={() => {
-                        axios.post(`/follow/${u.id}`, '',{...axiosDefault})
-                            .then(response => {
-                                    console.log(response)
-                                    if(response.data.resultCode===0){  props.follow(u.id) }
+                        usersApi.getUnfollow(u.id)
+                            .then(data => {
+                                    if(data.resultCode===0){  props.follow(u.id) }
                                 }
                             )
 
