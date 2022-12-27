@@ -9,8 +9,8 @@ import {
   onPageClick,
   unfollow,
 } from '../../Redax/users-reducer';
-import axios from 'axios';
 import Preloader from '../Preloader/Preloader';
+import {usersApi} from '../../API/api';
 
 export const axiosConfig = {
   withCredentials: true,
@@ -22,12 +22,12 @@ export const axiosConfig = {
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    axios
-      .get(`/users?count=${this.props.count}&page=${this.props.page}`, {...axiosConfig})
-      .then(request => {
+    usersApi
+      .getUsers(this.props.count, this.props.page)
+      .then(data => {
         this.props.onFetching(true);
-        this.props.addUsers(request.data.items);
-        this.props.addTotalCount(request.data.totalCount);
+        this.props.addUsers(data.items);
+        this.props.addTotalCount(data.totalCount);
       })
       .then(() => {
         this.props.onFetching(false);
@@ -37,10 +37,10 @@ class UsersContainer extends React.Component {
   eventClick = pageNum => {
     this.props.onFetching(true);
     this.props.onPageClick(pageNum);
-    axios
-      .get(`/users?count=${this.props.count}&page=${pageNum}`, {...axiosConfig})
-      .then(request => {
-        this.props.addUsers(request.data.items);
+    usersApi
+      .getUsersPage(this.props.count, pageNum)
+      .then(data => {
+        this.props.addUsers(data.items);
       })
       .then(() => {
         this.props.onFetching(false);

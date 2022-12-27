@@ -1,21 +1,15 @@
 import Header from './Header';
 import React from 'react';
-import axios from 'axios';
-import {axiosConfig} from '../Users/UsersContainer';
 import {connect} from 'react-redux';
 import {setAuthData} from '../../Redax/auth-reducer';
+import {authApi} from '../../API/api';
 
 class HeaderContainer extends React.Component {
   componentDidMount() {
-    axios
-      .get(`/auth/me`, {
-        ...axiosConfig,
-      })
-      .then(response => {
-        console.log(response);
-        let {id, email, login} = response.data.data;
-        this.props.setAuthData({id, email, login});
-      });
+    authApi.getAuth().then(data => {
+      let {id, email, login} = data.data;
+      this.props.setAuthData({id, email, login});
+    });
   }
 
   render() {

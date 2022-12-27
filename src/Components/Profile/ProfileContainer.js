@@ -2,22 +2,19 @@ import {connect} from 'react-redux';
 import PostsContainer from './Posts/postsContainer';
 import Profile from './Profile';
 import React from 'react';
-import axios from 'axios';
-import {axiosConfig} from '../Users/UsersContainer';
 import Preloader from '../Preloader/Preloader';
 import {onFetching} from '../../Redax/users-reducer';
 import {setProfileData} from '../../Redax/profile-reducer';
 import {useParams} from 'react-router-dom';
+import {profileApi} from '../../API/api';
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    axios
-      .get(`/profile/${this.props.params.userId}`, {
-        ...axiosConfig,
-      })
-      .then(request => {
+    profileApi
+      .getProfile(this.props.params.userId)
+      .then(data => {
         this.props.onFetching(true);
-        this.props.setProfileData(request.data);
+        this.props.setProfileData(data);
       })
       .then(() => {
         this.props.onFetching(false);
