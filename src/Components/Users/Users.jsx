@@ -1,8 +1,6 @@
 import styles from './users.module.css'
 import React from "react";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {axiosDefault} from "./UsersConteiner";
 import {usersApi} from "../../API/API";
 
 
@@ -27,25 +25,24 @@ const Users=(props)=>  {
 
                 </div>
                 <div>
-                    {u.followed ? <button onClick={() => {
+                    {u.followed ? <button disabled={props.isDisabling.some(id=>id===u.id)} onClick={() => {
+                        props.setDisablingCount(true,u.id)
                         usersApi.getFollow(u.id)
                             .then(data => {
                                     if(data.resultCode===0){ props.unfollow(u.id)}
+                                props.setDisablingCount(false,u.id)
                                 }
                             )
                     }}
-                    >Unfollow</button> : <button onClick={() => {
+                    >Unfollow</button> : <button disabled={props.isDisabling.some(id=>id===u.id)} onClick={() => {
+                        props.setDisablingCount(true,u.id)
                         usersApi.getUnfollow(u.id)
                             .then(data => {
                                     if(data.resultCode===0){  props.follow(u.id) }
-                                }
+                                    props.setDisablingCount(false,u.id)
+                            }
+
                             )
-
-
-
-
-
-
                     }}>Follow</button>}
                 </div>
             </span>

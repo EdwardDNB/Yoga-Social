@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 import Users from "./Users";
 import {
     follow,
-    setClickPage,
+    setClickPage, setDisablingCount,
     setFetchingCount,
     setTotalCount,
     setUsers,
@@ -54,6 +54,8 @@ class UsersApiContainer extends React.Component {
                 users={this.props.users}
                 unfollow={this.props.unfollow}
                 follow={this.props.follow}
+                isDisabling={this.props.isDisabling}
+                setDisablingCount={this.props.setDisablingCount}
             />
         </>
     }
@@ -65,13 +67,14 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         count: state.usersPage.count,
         totalUsersCount: state.usersPage.totalCount,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        isDisabling: state.usersPage.isDisabling
     }
 }
 
 
 const UsersContainer = connect(mapStateToProps, {
-    follow,unfollow,setUsers,setClickPage,setTotalCount,setFetchingCount
+    follow,unfollow,setUsers,setClickPage,setTotalCount,setFetchingCount,setDisablingCount
 })(UsersApiContainer)
 
 export default UsersContainer
