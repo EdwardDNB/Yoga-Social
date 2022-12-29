@@ -20,7 +20,7 @@ let initialState = {
     count:1,
     totalCount:100,
     isFetching:false,
-    isDisabling:[27299]
+    isDisabling:[]
 }
 let usersReduser = (state = initialState, action) => {
 
