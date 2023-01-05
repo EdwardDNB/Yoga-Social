@@ -1,7 +1,6 @@
 import styles from './users.module.css'
 import React from "react";
 import {NavLink} from "react-router-dom";
-import {usersApi} from "../../API/API";
 
 
 const Users=(props)=>  {
@@ -21,29 +20,17 @@ const Users=(props)=>  {
             {
                 props.users.map(u => <div key={u.id}>
             <span>
-                <div> <NavLink to={`/profile/${u.id}`}><img src={u.photos.large}  alt={''} className={styles.userPhoto}/></NavLink>
+                <div> <NavLink to={`/profile/${u.id}`}><img src={u.photos.large} alt={''} className={styles.userPhoto}/></NavLink>
 
                 </div>
                 <div>
-                    {u.followed ? <button disabled={props.isDisabling.some(id=>id===u.id)} onClick={() => {
-                        props.setDisablingCount(true,u.id)
-                        usersApi.getFollow(u.id)
-                            .then(data => {
-                                    if(data.resultCode===0){ props.unfollow(u.id)}
-                                props.setDisablingCount(false,u.id)
-                                }
-                            )
-                    }}
-                    >Unfollow</button> : <button disabled={props.isDisabling.some(id=>id===u.id)} onClick={() => {
-                        props.setDisablingCount(true,u.id)
-                        usersApi.getUnfollow(u.id)
-                            .then(data => {
-                                    if(data.resultCode===0){  props.follow(u.id) }
-                                    props.setDisablingCount(false,u.id)
-                            }
-
-                            )
-                    }}>Follow</button>}
+                    {u.followed
+                        ? <button disabled={props.isDisabling.some(id=>id===u.id)} onClick={() => {
+                        props.unfollow(u.id)
+                    }}>Follow</button>
+                        : <button disabled={props.isDisabling.some(id=>id===u.id)} onClick={() => {
+                        props.follow(u.id)
+                    }}>Unfollow</button>}
                 </div>
             </span>
                     <span>

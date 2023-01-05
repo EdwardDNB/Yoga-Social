@@ -1,4 +1,5 @@
 import axios from "axios";
+import {axiosDefault} from "../Components/Users/UsersConteiner";
 
 
 export const instance = axios.create({
@@ -13,19 +14,34 @@ export const usersApi={
         return  instance.get(`/users?page=${count}&count=${pageSize}`)
             .then(response=>response.data)
     },
-    getFollow(id){
-      return   instance.delete(`/follow/${id}`)
-          .then(response=>response.data)
-    },
     getUnfollow(id){
+      return   instance.delete(`/follow/${id}`)
+          .then(response=> {
+              console.log(response.data)
+          return     response.data
+          })
+    },
+    getFollow(id){
         return   instance.post(`/follow/${id}`, '')
-            .then(response=>response.data)
+
+            .then(response=> {
+                console.log(response.data)
+               return  response.data
+            })
     }
 
 }
 export const profileApi={
     getProfile(userId){
         return  instance.get(`/profile/${userId}`)
-            .then(response=>response.data)
+            .then(response=> {
+               return  response.data
+            })
     },
+}
+export const authApi={
+    getLogin(){
+        return  instance.get(`/auth/me`)
+            .then(response => response.data
+            )}
 }
