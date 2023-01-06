@@ -1,7 +1,6 @@
 import s from './Users.module.css';
-import defaultImg from '../Pictures/UserDefaultPicGirl.jpg';
+import defaultImg from '../Pictures/UserDefaultPic.png';
 import {NavLink} from 'react-router-dom';
-import {usersApi} from '../../API/api';
 
 const Users = props => {
   const pagesNumber = [];
@@ -17,10 +16,8 @@ const Users = props => {
           return (
             <span
               key={pageNum}
-              onClick={pageNum => {
-                {
-                  props.eventClick(pageNum);
-                }
+              onClick={() => {
+                props.eventClick(pageNum);
               }}
               className={props.page === pageNum ? s.selectedPageNum : s.PageNum}
             >
@@ -42,24 +39,18 @@ const Users = props => {
           <div>
             {u.followed ? (
               <button
+                disabled={props.isDisabling.some(id => id === u.id)}
                 onClick={() => {
-                  usersApi.getUnfollowUser(u.id).then(data => {
-                    if (data.resultCode === 0) {
-                      props.unfollow(u.id);
-                    }
-                  });
+                  props.unfollow(u.id);
                 }}
               >
                 Unfollow
               </button>
             ) : (
               <button
+                disabled={props.isDisabling.some(id => id === u.id)}
                 onClick={() => {
-                  usersApi.getFollowUser(u.id).then(data => {
-                    if (data.resultCode === 0) {
-                      props.follow(u.id);
-                    }
-                  });
+                  props.follow(u.id);
                 }}
               >
                 Follow
