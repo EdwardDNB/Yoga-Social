@@ -1,6 +1,11 @@
+import {authApi} from '../API/api';
+
 let set_AuthData = 'set_AuthData';
 
-export const setAuthData = ({id, email, login}) => ({type: set_AuthData, data: {id, email, login}});
+export const setAuthDataSuc = ({id, email, login}) => ({
+  type: set_AuthData,
+  data: {id, email, login},
+});
 
 let existingStore = {
   id: null,
@@ -17,5 +22,10 @@ const authReducer = (state = existingStore, action) => {
       return state;
   }
 };
-
+export const setAuthData = () => dispatch => {
+  authApi.getAuth().then(data => {
+    let {id, email, login} = data.data;
+    dispatch(setAuthDataSuc({id, email, login}));
+  });
+};
 export default authReducer;

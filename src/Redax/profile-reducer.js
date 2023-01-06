@@ -1,10 +1,11 @@
 import EdwardImg from '../../src/Components/Pictures/Foto_2.jpg';
+import {profileApi} from '../API/api';
 let ADD_POST = 'ADD-POST';
 let CHANGE_POST = 'CHANGE-POST';
 let set_ProfileData = 'set_ProfileData';
 export const actionAddPost = () => ({type: ADD_POST});
 export const actionChangePost = text => ({type: CHANGE_POST, newText: text});
-export const setProfileData = ProfileData => ({type: set_ProfileData, ProfileData});
+export const setProfileDataLocal = ProfileData => ({type: set_ProfileData, ProfileData});
 
 let existingStore = {
   PostData: [
@@ -60,5 +61,11 @@ const profileReducer = (state = existingStore, action) => {
       return state;
   }
 };
-
+export const setProfileData = userId => {
+  return dispatch => {
+    profileApi.getProfile(userId).then(data => {
+      dispatch(setProfileDataLocal(data));
+    });
+  };
+};
 export default profileReducer;

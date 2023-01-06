@@ -1,5 +1,5 @@
 import ProfileImg from '../Pictures/istockphoto-160797335-612x612.jpg';
-import DefaultImg from '../Pictures/UserDefaultPicGirl.jpg';
+import DefaultImg from '../Pictures/UserDefaultPic.png';
 import s from './Profile.module.css';
 import React from 'react';
 import Contacts from './Contacts';
@@ -16,7 +16,6 @@ const Profile = props => {
     <Contacts key={key} k={v[0]} v={v[1]} />
   ));
 
-  //console.log(props.ProfileData.contacts);
   return (
     <div>
       <div>
