@@ -17,15 +17,12 @@ export const usersApi={
     getUnfollow(id){
       return   instance.delete(`/follow/${id}`)
           .then(response=> {
-              console.log(response.data)
           return     response.data
           })
     },
     getFollow(id){
         return   instance.post(`/follow/${id}`, '')
-
             .then(response=> {
-                console.log(response.data)
                return  response.data
             })
     }

@@ -31,7 +31,8 @@ let mapStateToProps = (state) => {
     return {
         newMessagesBody: state.DialogsPage.newMessagesBody,
         MessageData: state.DialogsPage.MessageData,
-        DialogsData: state.DialogsPage.DialogsData
+        DialogsData: state.DialogsPage.DialogsData,
+        isAuth: state.auth.isAuth
     }
 }
 let mapDispatchToProps = (dispatch) => {
