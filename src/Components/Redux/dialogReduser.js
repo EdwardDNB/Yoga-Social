@@ -37,7 +37,7 @@ let dialogReduser = (state=initialDialogs, action) => {
 }
 
 
-export const sendMessageCreator = () => ({type: SEND_MESSAGE})
-export const updateMessageCreator = (body) => ({type: UPDATE_NEW_MESSAGE_BODY, newText: body})
+export const addPost = () => ({type: SEND_MESSAGE})
+export const changeMessage = (body) => ({type: UPDATE_NEW_MESSAGE_BODY, newText: body})
 
 export default dialogReduser

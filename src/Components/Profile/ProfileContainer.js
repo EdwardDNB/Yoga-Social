@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {setUserProfile} from "../Redux/profileReduser";
 import { useParams} from 'react-router-dom'
 import {withAuthRedirect} from "../Login/WithAuth";
+import {compose} from "redux";
 
 
 
@@ -15,7 +16,6 @@ class ProfileContainer extends React.Component {
     componentDidMount() {
         this.props.setUserProfile(this.props.param.userId)
     }
-
     render=()=> {
         return <>
         <Desine userProfile={this.props.userProfile}/>
@@ -28,14 +28,12 @@ class ProfileContainer extends React.Component {
 const TakeParams = (props) => {
     return <ProfileContainer {...props} param={useParams()} />
 }
-
-
-
 let mapStateToProps=(state)=> {
     return{
         userProfile:state.ProfilePage.userProfile,
     }}
+export default compose(
+     withAuthRedirect,
+     connect(mapStateToProps,{setUserProfile})
+ )(TakeParams)
 
-export default withAuthRedirect(connect(mapStateToProps,{
-    setUserProfile
-})(TakeParams))

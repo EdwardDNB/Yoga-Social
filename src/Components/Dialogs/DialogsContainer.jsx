@@ -1,9 +1,10 @@
 
-import {sendMessageCreator, updateMessageCreator} from "../Redux/dialogReduser";
+import {addPost, changeMessage} from "../Redux/dialogReduser";
 import Dialogs from "./Dialogs";
 /*import StoreContext from "../../StoreContext";*/
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../Login/WithAuth";
+import {compose} from "redux";
 
 
 /*const DialogsContainer = () => {
@@ -36,17 +37,11 @@ let mapStateToProps = (state) => {
 
     }
 }
-let mapDispatchToProps = (dispatch) => {
 
-    return {
-        addPost: () => {
-            dispatch(sendMessageCreator())
-        }, changeMessage: (body) => {
+const DialogsContainer=compose(
+    withAuthRedirect,
+    connect(mapStateToProps, {addPost,changeMessage})
+)(Dialogs)
 
-            dispatch(updateMessageCreator(body))
-        }
-    }
-}
-const DialogsContainer = withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(Dialogs))
 
 export default DialogsContainer
