@@ -2,6 +2,7 @@ import s from './Desine.module.css'
 import Hand_NotOkImg from '../../Asets/Hand_NotOk.png'
 import Hand_OkImg from '../../Asets/Hand_Ok.png'
 import PhotoDefault from "../../Users/userFoto.webp";
+import Status from "./Status";
 
 
 const Desine = (props) => {
@@ -11,6 +12,7 @@ const Desine = (props) => {
         </div>
         <div className={s.profile}>
             <div><img src={!props.userProfile.photos.large ? PhotoDefault : props.userProfile.photos.large}/></div>
+           <Status status='Hello'/>
             <div className={s.properties}>
                 <h3>Contacts</h3>
                 <ul>
