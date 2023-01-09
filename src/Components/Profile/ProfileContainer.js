@@ -6,6 +6,7 @@ import Preloader from '../Preloader/Preloader';
 import {setProfileData} from '../../Redax/profile-reducer';
 import {useParams} from 'react-router-dom';
 import {withAuthRedirect} from '../Login/AuthRedirector';
+import {compose} from 'redux';
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
@@ -32,8 +33,4 @@ let mapStateToProps = state => {
     isFetching: state.usersBranch.isFetching,
   };
 };
-export default withAuthRedirect(
-  connect(mapStateToProps, {
-    setProfileData,
-  })(Params),
-);
+export default compose(withAuthRedirect, connect(mapStateToProps, {setProfileData}))(Params);

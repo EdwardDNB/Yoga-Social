@@ -3,6 +3,7 @@ import DefaultImg from '../Pictures/UserDefaultPic.png';
 import s from './Profile.module.css';
 import React from 'react';
 import Contacts from './Contacts';
+import Status from './Status';
 
 const Profile = props => {
   for (let key in props.ProfileData.contacts) {
@@ -29,6 +30,7 @@ const Profile = props => {
           />
         </div>
         <h3>{props.ProfileData.fullName}</h3>
+        <Status status="No status" />
         <div className={s.contacts}>{contactsElement}</div>
         <div>{props.ProfileData.lookingForAJob}</div>
         <div>{props.ProfileData.aboutMe}</div>
