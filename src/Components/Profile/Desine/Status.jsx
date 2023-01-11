@@ -17,12 +17,25 @@ class Status extends React.Component{
             editStatus:true
         })
     }
-    setStatusFalse=()=>{
-        this.setState({
+    setStatusFalse=(e)=>{
+        if(e.currentTarget.value!==this.props.userStatus){
+            this.setState({
+                editStatus:false,
+            })
+            this.props.setMyStatus(this.state.userStatus)
+        }this.setState({
             editStatus:false
         })
-        this.props.setMyStatus(this.state.userStatus)
+
     }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.userStatus!==this.props.userStatus){
+            this.setState({
+                userStatus:this.props.userStatus
+            })
+        }
+    }
+
     render() {
         return (
             <div> {!this.state.editStatus && <div>

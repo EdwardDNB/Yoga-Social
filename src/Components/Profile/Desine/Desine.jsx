@@ -13,6 +13,7 @@ const Desine = (props) => {
         <div className={s.profile}>
             <div><img src={!props.userProfile.photos.large ? PhotoDefault : props.userProfile.photos.large}/></div>
             <Status userStatus={props.userStatus} setMyStatus={props.setMyStatus}/>
+            <h1>{props.userProfile.fullName}</h1>
             <div className={s.properties}>
                 <h3>Contacts</h3>
                 <ul>
