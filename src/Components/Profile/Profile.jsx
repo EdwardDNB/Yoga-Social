@@ -30,7 +30,7 @@ const Profile = props => {
           />
         </div>
         <h3>{props.ProfileData.fullName}</h3>
-        <Status status="No status" />
+        <Status ProfileStatus={props.ProfileStatus} setProfileStatus={props.setProfileStatus} />
         <div className={s.contacts}>{contactsElement}</div>
         <div>{props.ProfileData.lookingForAJob}</div>
         <div>{props.ProfileData.aboutMe}</div>
