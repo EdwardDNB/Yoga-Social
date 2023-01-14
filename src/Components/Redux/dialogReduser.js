@@ -1,4 +1,4 @@
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY';
+
 const SEND_MESSAGE = 'SEND_MESSAGE';
 
 let initialDialogs={ DialogsData: [
@@ -16,16 +16,11 @@ let initialDialogs={ DialogsData: [
         {message: "Where are you from?", id: 4},
         {message: "What did you do on Saturday evening?", id: 5},
         {message: "Why was the class difficult?", id: 6},
-    ],
-    newMessagesBody: 'Write Messages',}
+    ]}
 let dialogReduser = (state=initialDialogs, action) => {
       switch (action.type) {
-        case UPDATE_NEW_MESSAGE_BODY:
-            return{
-                ...state,newMessagesBody : action.newText
-            }
         case SEND_MESSAGE:
-            let body = state.newMessagesBody
+            let body = action.textarea
             return{
                 ...state,
                 MessageData:[...state.MessageData,{message: body, id: 6}],
@@ -35,9 +30,6 @@ let dialogReduser = (state=initialDialogs, action) => {
     }
     
 }
-
-
-export const addPost = () => ({type: SEND_MESSAGE})
-export const changeMessage = (body) => ({type: UPDATE_NEW_MESSAGE_BODY, newText: body})
+export const addPost = (textarea) => ({type: SEND_MESSAGE,textarea})
 
 export default dialogReduser

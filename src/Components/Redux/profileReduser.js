@@ -3,21 +3,17 @@ import {profileApi} from "../../API/API";
 
 
 const ADD_POST = 'ADD-POST';
-const CHANGE_POST = 'CHANGE-POST';
 const setUser_Profile = 'setUser_Profile';
 const getUser_Status = 'getUser_Status';
-const setStatus_Success = 'setStatus_Success';
-export const addPostActionCreator = () => ({type: ADD_POST})
-export const changeActionCreator = (text) => ({type: CHANGE_POST, newText: text})
+export const addPostActionCreator = (newPost) => ({type: ADD_POST,newPost})
 export const setUserProfileSuccess = (userProfile) => ({type: setUser_Profile, userProfile})
 export const getUserProfileStatus = (userStatus) => ({type: getUser_Status, userStatus})
-export const setStatusSuccess = (setStatusSuccess) => ({type: setStatus_Success, setStatusSuccess})
+
 let initialState = {
     PostData: [
         {message: 'How are you?', likeCounts: 0},
         {message: 'Do you one a party??', likeCounts: 10}
     ],
-    TextData: 'Write Messages',
     userProfile: {
         photos: {small: PhotoDefault},
         contacts: {
@@ -45,20 +41,14 @@ let profileReduser = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST : {
             return {
-                ...state, PostData: [...state.PostData, {message: state.TextData, likeCounts: 0}],
-                TextData: ''
+                ...state, PostData: [...state.PostData, {message: action.newPost, likeCounts: 0}]
             }
-        }
-        case CHANGE_POST: {
-            return {...state, TextData: action.newText}
         }
         case setUser_Profile: {
             return {...state, userProfile: action.userProfile}
         }
         case getUser_Status: {
             return {...state, userStatus: action.userStatus}
-        }case setStatus_Success: {
-            return {...state, setStatusSuccess: action.setStatusSuccess}
         }
         default:
             return state

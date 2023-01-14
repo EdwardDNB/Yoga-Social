@@ -1,5 +1,5 @@
 
-import {addPost, changeMessage} from "../Redux/dialogReduser";
+import {addPost} from "../Redux/dialogReduser";
 import Dialogs from "./Dialogs";
 /*import StoreContext from "../../StoreContext";*/
 import {connect} from "react-redux";
@@ -40,7 +40,7 @@ let mapStateToProps = (state) => {
 
 const DialogsContainer=compose(
     withAuthRedirect,
-    connect(mapStateToProps, {addPost,changeMessage})
+    connect(mapStateToProps, {addPost})
 )(Dialogs)
 
 
