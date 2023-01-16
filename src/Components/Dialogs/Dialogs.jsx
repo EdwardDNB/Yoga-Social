@@ -1,39 +1,23 @@
-import s from './Dialogs.module.css'
-import Dialog from "./Dialog/Dialog";
-import React from "react";
-import Message from "./Dialog/Message";
+import s from './Dialogs.module.css';
+import Dialog from './Dialog/Dialog';
+import React from 'react';
+import Message from './Dialog/Message';
+import {ReduxFormMessageSubmit} from '../Profile/Posts/Posts';
 
+const Dialogs = props => {
+  let DialogElement = props.DialogsBranch.DialogsData.map(d => <Dialog name={d.name} id={d.id} />);
+  let MessageElement = props.DialogsBranch.MessagesData.map(m => <Message message={m.message} />);
 
-const Dialogs = (props) => {
+  const onSubmit = formData => {
+    props.addMessage(formData.ChangeMessage);
+  };
 
-    let DialogElement = props.DialogsBranch.DialogsData.map(d => <Dialog name={d.name} id={d.id}/>)
-    let MessageElement = props.DialogsBranch.MessagesData.map(m => <Message message={m.message}/>)
-
-
-    let addMessage = () => {
-       props.addMessage()
-    }
-    let ChangeMessage = (e) => {
-        let text = e.target.value
-       props.ChangeMessage(text)
-    }
-
-
-    return (
-        <div className={s.dialogs}>
-            <div className={s.dialogsitem}>
-                {DialogElement}
-
-            </div>
-            <div className={s.messages}>
-                {MessageElement}
-            </div>
-            <div>
-                <textarea onChange={ChangeMessage} value={props.MessageText} rows='10'></textarea>
-                <button onClick={addMessage}>Send</button>
-            </div>
-        </div>
-    )
-
-}
-export default Dialogs
+  return (
+    <div className={s.dialogs}>
+      <div className={s.dialogsitem}>{DialogElement}</div>
+      <div className={s.messages}>{MessageElement}</div>
+      <ReduxFormMessageSubmit onSubmit={onSubmit} />
+    </div>
+  );
+};
+export default Dialogs;

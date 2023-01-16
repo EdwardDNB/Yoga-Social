@@ -1,11 +1,9 @@
 import EdwardImg from '../../src/Components/Pictures/Foto_2.jpg';
 import {profileApi} from '../API/api';
 let ADD_POST = 'ADD-POST';
-let CHANGE_POST = 'CHANGE-POST';
 let set_ProfileData = 'set_ProfileData';
 let set_Status = 'set_Status';
-export const actionAddPost = () => ({type: ADD_POST});
-export const actionChangePost = text => ({type: CHANGE_POST, newText: text});
+export const actionAddPost = Message => ({type: ADD_POST, Message});
 export const setProfileDataLocal = ProfileData => ({type: set_ProfileData, ProfileData});
 export const setProfileStatusLocal = Status => ({type: set_Status, Status});
 
@@ -14,7 +12,6 @@ let existingStore = {
     {postCount: 1, message: 'Hello, how are you?', likesCount: 0},
     {postCount: 2, message: 'Do you wanna like a party?', likesCount: 20},
   ],
-  TextData: 'Write Post',
   ProfileData: {
     aboutMe: 'Good Man',
     contacts: {
@@ -44,23 +41,19 @@ const profileReducer = (state = existingStore, action) => {
     case ADD_POST:
       return {
         ...state,
-        TextData: '',
         PostData: [
+          ...state.PostData,
           {
             postCount: 3,
-            message: state.TextData,
+            message: action.Message,
             likesCount: 0,
           },
-          ...state.PostData,
         ],
       };
-    case CHANGE_POST:
-      return {...state, TextData: action.newText};
     case set_ProfileData:
       return {...state, ProfileData: action.ProfileData};
     case set_Status:
       return {...state, Status: action.Status};
-
     default:
       return state;
   }
