@@ -2,6 +2,8 @@ import React from "react";
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
 import {Field, reduxForm} from "redux-form";
+import {maxCurrentSymbols, required} from "../../Validate/Validate";
+import {Textarea} from "./Textarea";
 
 const MyPosts = (props) => {
     const onSubmit=(formData)=>{
@@ -19,7 +21,8 @@ const MyPosts = (props) => {
 }
 const addProfileMessage=(props)=>{
     return <form onSubmit={props.handleSubmit}>
-        <Field placeholder={"Write message"} component={"textarea"} name={"newPost"} />
+        <Field placeholder={"Write message"} component={Textarea} name={"newPost"}
+        validate={[required,maxCurrentSymbols(10)]}/>
         <div>
             <button> Add post</button>
         </div>

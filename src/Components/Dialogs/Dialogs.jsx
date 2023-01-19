@@ -3,6 +3,8 @@ import Message from "./Message/Message";
 import Dialog from "./Dialog/Dialog";
 import React from "react";
 import {Field, reduxForm} from "redux-form";
+import {Textarea} from "../Profile/MyPosts/Textarea";
+import {maxCurrentSymbols, required} from "../Validate/Validate";
 
 
 
@@ -13,7 +15,7 @@ const Dialogs = (props) => {
     let MessageElement = props.MessageData.map(m => <Message message={m.message}/>)
     let DialogsElement = props.DialogsData.map(d => <Dialog name={d.name} id={d.id}/>)
     const onSubmit=(formData)=>{
-        console.log(formData)
+        //console.log(formData)
         props.addPost(formData.textarea)
     }
     return (
@@ -30,7 +32,7 @@ const Dialogs = (props) => {
 }
 const dialogForm=(props)=>{
     return <form onSubmit={props.handleSubmit} >
-       <Field name={'textarea'} placeholder={"Write message"} component={"textarea"}/>
+       <Field name={'textarea'}  validate={[required,maxCurrentSymbols(20)]} placeholder={"Write message"} component={Textarea}/>
         <button>Send</button>
     </form>
 }
