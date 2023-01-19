@@ -1,14 +1,15 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
+import {Input} from '../Validation/FormFields';
 
 let loginForm = props => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
-        <Field placeholder={'Login'} name={'login'} component={'input'} />
+        <Field placeholder={'Login'} name={'login'} component={Input} />
       </div>
       <div>
-        <Field placeholder={'Password'} name={'password'} component={'input'} />
+        <Field placeholder={'Password'} name={'password'} component={Input} />
       </div>
       <label>
         <Field name="remember" component="input" type="radio" value="remembered" /> remember
@@ -22,7 +23,7 @@ let loginForm = props => {
 
 const LoginReduxForm = reduxForm({form: 'login'})(loginForm);
 
-export const login = props => {
+export const login = () => {
   const onSubmit = formData => {
     console.log(formData);
   };

@@ -1,6 +1,8 @@
 import Post from './Post/Post';
 import s from './Posts.module.css';
 import {Field, reduxForm} from 'redux-form';
+import {maxFieldValue, required} from '../../Validation/Validation';
+import {Textarea} from '../../Validation/FormFields';
 
 const Posts = props => {
   let PostElement = props.PostData.map(p => (
@@ -20,7 +22,12 @@ const Posts = props => {
 const postForm = props => {
   return (
     <form onSubmit={props.handleSubmit}>
-      <Field name={'ChangeMessage'} placeholder={'Write message'} component={'textarea'} />
+      <Field
+        name={'ChangeMessage'}
+        placeholder={'Write message'}
+        validate={[required, maxFieldValue(10)]}
+        component={Textarea}
+      />
       <button>Send</button>
     </form>
   );
