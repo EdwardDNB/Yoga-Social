@@ -6,7 +6,7 @@ const Header = (props) => {
         <img
             src='https://play-lh.googleusercontent.com/ahJtMe0vfOlAu1XJVQ6rcaGrQBgtrEZQefHy7SXB7jpijKhu1Kkox90XDuH8RmcBOXNn'/>
         <div className={s.loginBlock}>
-            {props.isAuth ? props.login
+            {props.isAuth ? <div>{props.login}- <button onClick={props.Logout}>Logout</button> </div>
                 : <NavLink to='/login'>Login</NavLink>
             }
 
