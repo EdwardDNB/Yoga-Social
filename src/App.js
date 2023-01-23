@@ -9,26 +9,37 @@ import UsersContainer from './Components/Users/UsersContainer';
 import ProfileContainer from './Components/Profile/ProfileContainer';
 import HeaderContainer from './Components/Header/HeaderContainer';
 import Login from './Components/Login/Login';
+import React from 'react';
+import {connect} from 'react-redux';
+import {setInitial} from './Redax/app-reducer';
+import Preloader from './Components/Preloader/Preloader';
 
-const App = () => {
-  return (
-    <div className="app-wrapper">
-      <HeaderContainer />
-      <Navbar />
-      <div className="app-wrapper-content">
-        <Routes>
-          <Route path="profile/" element={<ProfileContainer />} />
-          <Route path="/Users/profile/:userId" element={<ProfileContainer />} />
-          <Route path="Dialogs" element={<DialogsContainer />} />
-          <Route path="News" element={<News />} />
-          <Route path="Music" element={<Music />} />
-          <Route path="Settings" element={<Settings />} />
-          <Route path="Users" element={<UsersContainer />} />
-          <Route path="Login" element={<Login />} />
-        </Routes>
+class App extends React.Component {
+  componentDidMount() {
+    this.props.setInitial();
+  }
+
+  render() {
+    if (!this.props.initial) return <Preloader />;
+    return (
+      <div className="app-wrapper">
+        <HeaderContainer />
+        <Navbar />
+        <div className="app-wrapper-content">
+          <Routes>
+            <Route path="profile/" element={<ProfileContainer />} />
+            <Route path="/Users/profile/:userId" element={<ProfileContainer />} />
+            <Route path="Dialogs" element={<DialogsContainer />} />
+            <Route path="News" element={<News />} />
+            <Route path="Music" element={<Music />} />
+            <Route path="Settings" element={<Settings />} />
+            <Route path="Users" element={<UsersContainer />} />
+            <Route path="Login" element={<Login />} />
+          </Routes>
+        </div>
       </div>
-    </div>
-  );
-};
-
-export default App;
+    );
+  }
+}
+let msp = state => ({initial: state.app.initial});
+export default connect(msp, {setInitial})(App);

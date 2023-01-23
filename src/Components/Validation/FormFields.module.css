@@ -5,3 +5,8 @@
 .formControl.error span{
     color: red;
 }
+.loginError{
+    border: 5px solid red;
+    padding: 10px;
+    color: crimson;
+}

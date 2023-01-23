@@ -12,7 +12,7 @@ class ProfileContainer extends React.Component {
   componentDidMount() {
     let id = this.props.params.userId;
     if (!id) {
-      id = this.props.ProfileData.userId;
+      id = this.props.userId;
     }
     this.props.setProfileData(id);
     this.props.getProfileStatus(id);
@@ -41,6 +41,7 @@ let mapStateToProps = state => {
     ProfileData: state.ProfileBranch.ProfileData,
     Status: state.ProfileBranch.Status,
     isFetching: state.usersBranch.isFetching,
+    userId: state.authReducer.id,
   };
 };
 export default compose(
