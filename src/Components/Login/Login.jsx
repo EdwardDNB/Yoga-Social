@@ -5,6 +5,8 @@ import {required} from "../Validate/Validate";
 import {connect} from "react-redux";
 import {Log_in, Logout} from "../Redux/authReduser";
 import {Navigate} from "react-router-dom";
+import s from '../Profile/MyPosts/Textarea.module.css'
+
 
 const loginForm = (props) => {
     return (
@@ -20,6 +22,9 @@ const loginForm = (props) => {
             <label>
                 <Field name="rememberMe" component="input" type="radio" value="true"/> remember
             </label>
+            {props.error && <div className={s.formSummeryError}>
+            {props.error}
+                </div> }
             <div>
                 <button>Login</button>
             </div>
@@ -31,7 +36,6 @@ const LoginReduxForm = reduxForm({form: 'login'})(loginForm)
 
 export const login = (props) => {
     const onSubmit = (formData) => {
-
         props.Log_in(formData.email,formData.password,formData.rememberMe)
     }
     if(props.isAuth)return <Navigate to='../profile'/>

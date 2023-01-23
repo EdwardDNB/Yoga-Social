@@ -15,7 +15,7 @@ import {compose} from "redux";
 class ProfileContainer extends React.Component {
     componentDidMount() {
           let id=this.props.param.userId
-        if(!id){id=this.props.userProfile.userId}
+        if(!id){id=this.props.initialId}
         this.props.getUserProfile(id)
         this.props.getUserStatus(id)
     }
@@ -37,6 +37,8 @@ let mapStateToProps=(state)=> {
     return{
         userProfile:state.ProfilePage.userProfile,
         userStatus:state.ProfilePage.userStatus,
+        initialId:state.auth.userId,
+
     }}
 export default compose(
      withAuthRedirect,
