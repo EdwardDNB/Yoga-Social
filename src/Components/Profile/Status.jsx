@@ -1,53 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-class Status extends React.Component {
-  state = {
-    mod: false,
-    ProfileStatus: this.props.ProfileStatus,
-  };
-  trueMod = () => {
-    this.setState({
-      mod: true,
-    });
-  };
-  falseMod = () => {
-    this.setState({
-      mod: false,
-    });
-    this.props.setProfileStatus(this.state.ProfileStatus);
-  };
-  setLocalChange = e => {
-    this.setState({
-      ProfileStatus: e.currentTarget.value,
-    });
-  };
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.ProfileStatus !== this.props.ProfileStatus) {
-      this.setState({
-        ProfileStatus: this.props.ProfileStatus,
-      });
-    }
+const Status = props => {
+  let [active, setActive] = useState(false);
+  let [text, setText] = useState(props.ProfileStatus);
+
+  function activation() {
+    setActive(true);
   }
 
-  render() {
-    return (
-      <div>
-        {!this.state.mod && (
-          <div>
-            <span onClick={this.trueMod}>{this.props.ProfileStatus || 'You status'}</span>
-          </div>
-        )}
-        {this.state.mod && (
-          <div>
-            <input
-              value={this.state.ProfileStatus}
-              onBlur={this.falseMod}
-              onChange={this.setLocalChange}
-            />
-          </div>
-        )}
-      </div>
-    );
+  function deactivation() {
+    setActive(false);
+    props.setProfileStatus(text);
   }
-}
+
+  function pushText(e) {
+    setText(e.currentTarget.value);
+  }
+
+  return (
+    <div>
+      {!active && (
+        <div>
+          <span onClick={activation}>{props.ProfileStatus || 'You status'}</span>
+        </div>
+      )}
+      {active && (
+        <div>
+          <input value={text} onBlur={deactivation} onChange={pushText} />
+        </div>
+      )}
+    </div>
+  );
+};
 export default Status;

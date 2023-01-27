@@ -34,7 +34,7 @@ let existingStore = {
       large: EdwardImg,
     },
   },
-  Status: 'No status',
+  Status: '',
 };
 const profileReducer = (state = existingStore, action) => {
   switch (action.type) {
