@@ -74,42 +74,38 @@ let usersReduser = (state = initialState, action) => {
 
 }
 export const getUsers = (count, pageSize) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setFetchingCount(true))
-        usersApi.getUsers(count, pageSize).then(data => {
-                dispatch(setClickPage(count))
-                dispatch(setTotalCount(data.totalCount))
-                dispatch(setUsers(data.items))
-                dispatch(setFetchingCount(false))
-            }
-        )
+        let data = await usersApi.getUsers(count, pageSize)
+        dispatch(setClickPage(count))
+        dispatch(setTotalCount(data.totalCount))
+        dispatch(setUsers(data.items))
+        dispatch(setFetchingCount(false))
     }
 }
+const following=()=>{
+
+}
+
 export const follow = (userId) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setDisablingCount(true, userId))
-        usersApi.getFollow(userId)
-            .then(data => {
-                    if (data.resultCode === 0) {
-                        dispatch(followSuccess(userId))
-                    }
-                    dispatch(setDisablingCount(false, userId))
-                }
-            )
+        let data = await usersApi.getFollow(userId)
+        if (data.resultCode === 0) {
+            dispatch(followSuccess(userId))
+        }
+        dispatch(setDisablingCount(false, userId))
     }
 
 }
 export const unfollow = (userId) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setDisablingCount(true, userId))
-        usersApi.getUnfollow(userId)
-            .then(data => {
-                    if (data.resultCode === 0) {
-                        dispatch(unfollowSuccess(userId))
-                    }
-                    dispatch(setDisablingCount(false, userId))
-                }
-            )
+        let data = await usersApi.getUnfollow(userId)
+        if (data.resultCode === 0) {
+            dispatch(unfollowSuccess(userId))
+        }
+        dispatch(setDisablingCount(false, userId))
     }
 
 }

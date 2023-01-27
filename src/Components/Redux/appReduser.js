@@ -26,7 +26,7 @@ export const setInitialSuccess = () => ({
 
 export const setInitial = () => {
     return (dispatch) => {
-       let promise= [dispatch(setAuthUserData())]
+       let promise= dispatch(setAuthUserData())
        Promise.all([promise])
            .then(()=>{
                dispatch(setInitialSuccess())

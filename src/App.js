@@ -23,7 +23,7 @@ class App extends React.Component {
 
     render() {
         if (!this.props.app) return <Preloader/>
-        return (
+        else return (
             <div className='app-wrapper'>
                 <HeaderContainer/>
                 <Navbar/>

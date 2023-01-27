@@ -7,6 +7,12 @@ import {
 } from "../Redux/usersReduser";
 import React from "react";
 import Preloader from "../../Common/Loader";
+import {
+    countSelector, isDisablingSelector,
+    isFetchingSelector,
+    pageSizeSelector, superUsersSelector,
+    totalUsersCountSelector,
+} from "../Redux/usersSelector";
 
 
 
@@ -38,12 +44,12 @@ class UsersApiContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        count: state.usersPage.count,
-        totalUsersCount: state.usersPage.totalCount,
-        isFetching: state.usersPage.isFetching,
-        isDisabling: state.usersPage.isDisabling
+        users: superUsersSelector(state),
+        pageSize: pageSizeSelector(state),
+        count: countSelector(state),
+        totalUsersCount: totalUsersCountSelector(state),
+        isFetching: isFetchingSelector(state),
+        isDisabling: isDisablingSelector(state)
     }
 }
 

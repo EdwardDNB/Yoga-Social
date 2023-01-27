@@ -1,52 +1,32 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 
-
-class Status extends React.Component{
-    state={
-        editStatus:false,
-        userStatus:this.props.userStatus
+const Status = (props) => {
+    let [edit, setEdit] = useState(false)
+    let [status, setStatus] = useState(props.userStatus)
+    useEffect(()=>{
+        setStatus(props.userStatus)
+    },[props.userStatus])
+    let activate = () => {
+        setEdit(true)
     }
-    changeMyStatus=(e)=>{
-        this.setState({
-            userStatus:e.currentTarget.value
-        })
+    let deactivate = () => {
+        setEdit(false)
+        props.setMyStatus(status)
     }
-    setStatusTrue=()=>{
-        this.setState({
-            editStatus:true
-        })
-    }
-    setStatusFalse=(e)=>{
-        if(e.currentTarget.value!==this.props.userStatus){
-            this.setState({
-                editStatus:false,
-            })
-            this.props.setMyStatus(this.state.userStatus)
-        }this.setState({
-            editStatus:false
-        })
-
-    }
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if(prevProps.userStatus!==this.props.userStatus){
-            this.setState({
-                userStatus:this.props.userStatus
-            })
-        }
+    let pushStatus = (e) => {
+        setStatus(e.currentTarget.value)
     }
 
-    render() {
-        return (
-            <div> {!this.state.editStatus && <div>
-                    <span onClick={this.setStatusTrue} >{this.props.userStatus?this.props.userStatus:'No status'} </span>
-                </div>}
-                {this.state.editStatus && <div>
-                    <input onChange={this.changeMyStatus}
-                           value={this.state.userStatus} onBlur={this.setStatusFalse} />
-                </div>}
-            </div>
-        );
-    }
+    return (
+        <div> {!edit && <div>
+            <span onClick={activate}>{props.userStatus ? props.userStatus : 'No status'} </span>
+        </div>}
+            {edit && <div>
+                <input onBlur={deactivate} onChange={pushStatus} value={status}/>
+            </div>}
+        </div>
+    );
+
 }
 export default Status
