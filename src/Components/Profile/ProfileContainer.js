@@ -14,8 +14,9 @@ import {compose} from "redux";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
+        console.log('this.props', this.props);
           let id=this.props.param.userId
-        if(!id){id=this.props.initialId}
+        if(!id){id=26427}
         this.props.getUserProfile(id)
         this.props.getUserStatus(id)
     }
@@ -37,7 +38,7 @@ let mapStateToProps=(state)=> {
     return{
         userProfile:state.ProfilePage.userProfile,
         userStatus:state.ProfilePage.userStatus,
-        initialId:state.auth.userId,
+        userId:state.auth.userId,
 
     }}
 export default compose(

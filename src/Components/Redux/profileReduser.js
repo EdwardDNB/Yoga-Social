@@ -1,7 +1,6 @@
 import PhotoDefault from "../Users/userFoto.webp";
 import {profileApi} from "../../API/API";
 
-
 const ADD_POST = 'ADD-POST';
 const setUser_Profile = 'setUser_Profile';
 const getUser_Status = 'getUser_Status';
@@ -26,12 +25,12 @@ let initialState = {
             youtube: null,
             mainLink: null,
         },
-        userId: 26427,
+        userId: null,
         lookingForAJob: true,
         lookingForAJobDescription: 'Frontend Developer',
         fullName: 'Edward'
     },
-    userStatus: 'No status',
+    userStatus: '',
     setStatusSuccess:false
 }
 
@@ -59,6 +58,7 @@ export const getUserProfile = (userId) => {
     return (dispatch) => {
         profileApi.getProfile(userId)
             .then(data => {
+                //console.log(data)
                 dispatch(setUserProfileSuccess(data))
             })
     }
@@ -76,7 +76,7 @@ export const setStatus = (status) => {
     return (dispatch) => {
         profileApi.updateStatus(status)
             .then(data => {
-                console.log('set',data)
+               //console.log('set',data)
                 if (data.resultCode === 0) {
                     dispatch(getUserProfileStatus(status))
                 }

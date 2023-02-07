@@ -10,6 +10,7 @@ let initialSate = {
     login: null,
     isAuth: false
 }
+
 let authReduser = (state = initialSate, action) => {
     switch (action.type) {
         case SET_USER_DATA:
@@ -33,6 +34,7 @@ export const setAuthUserData = () => {
         let data = await authApi.getLogin()
         if (data.resultCode === 0) {
             let {id, email, login} = data.data
+            console.log('id',id)
             dispatch(setAuthUserDataSuccess({id, email, login, isAuth: true}))
         }
     }

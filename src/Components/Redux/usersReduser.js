@@ -1,5 +1,6 @@
 import PhotoDefault from '../Users/userFoto.webp'
 import {usersApi} from "../../API/API";
+import {helperObj} from "./helperObj";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -31,22 +32,18 @@ let usersReduser = (state = initialState, action) => {
         case UNFOLLOW:
             return {
                 ...state,
-                users: state.users.map(u => {
+                users:helperObj(state.users,'id',action.userId, {followed: false})
+               /* users: state.users.map(u => {
                     if (u.id === action.userId) {
                         return {...u, followed: false}
                     }
                     return u
-                })
+                })*/
             }
         case FOLLOW:
             return {
                 ...state,
-                users: state.users.map(u => {
-                    if (u.id === action.userId) {
-                        return {...u, followed: true}
-                    }
-                    return u
-                })
+                users: helperObj(state.users,'id',action.userId, {followed: true})
             }
         case SET_USERS: {
             return {...state, users: action.users}
@@ -83,29 +80,28 @@ export const getUsers = (count, pageSize) => {
         dispatch(setFetchingCount(false))
     }
 }
-const following=()=>{
-
+ const followUnfollowFlow =async (dispatch,userId,apiMethod,followAction) => {
+        dispatch(setDisablingCount(true, userId))
+        let data = await apiMethod
+        if (data.resultCode === 0) {
+            dispatch(followAction(userId))
+        }
+        dispatch(setDisablingCount(false, userId))
 }
 
 export const follow = (userId) => {
     return async (dispatch) => {
-        dispatch(setDisablingCount(true, userId))
-        let data = await usersApi.getFollow(userId)
-        if (data.resultCode === 0) {
-            dispatch(followSuccess(userId))
-        }
-        dispatch(setDisablingCount(false, userId))
+        let apiMethod=usersApi.getFollow(userId)
+        await followUnfollowFlow(dispatch, userId, apiMethod, followSuccess)
+
     }
 
 }
 export const unfollow = (userId) => {
     return async (dispatch) => {
-        dispatch(setDisablingCount(true, userId))
-        let data = await usersApi.getUnfollow(userId)
-        if (data.resultCode === 0) {
-            dispatch(unfollowSuccess(userId))
-        }
-        dispatch(setDisablingCount(false, userId))
+        let apiMethod=usersApi.getUnfollow(userId)
+        await followUnfollowFlow(dispatch, userId, apiMethod, unfollowSuccess)
+
     }
 
 }
