@@ -3,7 +3,7 @@ import Message from "./Message/Message";
 import Dialog from "./Dialog/Dialog";
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {Textarea} from "../Profile/MyPosts/Textarea";
+import {Textarea} from "../../Common/Textarea";
 import {maxCurrentSymbols, required} from "../Validate/Validate";
 
 

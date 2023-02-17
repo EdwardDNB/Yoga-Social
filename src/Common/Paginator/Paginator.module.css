@@ -1,0 +1,13 @@
+.paginator{
+    margin: 10px;
+}
+.activePage{
+    padding: 2px;
+    font-weight: bold;
+    border: black 1px ;
+}
+.unActivePage{
+    padding: 2px;
+    cursor: pointer;
+    border: 1px solid grey;
+}

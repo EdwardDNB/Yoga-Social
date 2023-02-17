@@ -1,6 +1,6 @@
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
-import {Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
@@ -10,10 +10,11 @@ import ProfileContainer from "./Components/Profile/ProfileContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import Login from "./Components/Login/Login";
 import React from "react";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {setInitial} from "./Components/Redux/appReduser";
 import Preloader from "./Common/Loader";
+import store from "./Components/Redux/reduxStore";
 
 
 class App extends React.Component {
@@ -40,15 +41,21 @@ class App extends React.Component {
                     </Routes>
                 </div>
             </div>
-
         )
-
     }
 }
 
 let msp = (state) => ({app: state.app.initial})
-export default compose(
+let AppContainer= compose(
     connect(msp, {setInitial})
 )
 (App)
-
+export let YogaJsApp=()=>{
+    return<React.StrictMode>
+        <BrowserRouter>
+            <Provider store={store}>
+                <AppContainer />
+            </Provider>
+        </BrowserRouter>
+    </React.StrictMode>
+}

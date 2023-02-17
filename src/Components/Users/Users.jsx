@@ -1,46 +1,16 @@
-import styles from './users.module.css'
+
 import React from "react";
-import {NavLink} from "react-router-dom";
+import {Paginator} from "../../Common/Paginator/Paginator";
+import {User} from "./User";
 
 
-const Users=(props)=>  {
-        const pages = []
-        const pageCount = Math.ceil(props.totalUsersCountNow / props.pageSize)
-        for (let i = 1; i <= pageCount; i++) {
-            pages.push(i)
-        }
-        return <div>
-            {pages.map((p) => {
-                return <span key={p} className={props.count === p ? styles.activePage : styles.unActivePage}
-                             onClick={(e) => {
-                                props.clickEvent(p)
-                             }}
-                > {p} </span>
-            })}
+const Users=({users,totalUsersCountNow,pageSize,count,clickEvent,follow,isDisabling,unfollow})=>  {
+       return  <div>
+           <Paginator totalItemsCountNow={totalUsersCountNow} pageSize={pageSize}
+                      count={count} clickEvent={clickEvent}/>
             {
-                props.users.map(u => <div key={u.id}>
-            <span>
-                <div> <NavLink to={`/profile/${u.id}`}><img src={u.photos.large} alt={''} className={styles.userPhoto}/></NavLink>
-
-                </div>
-                <div>
-                    {u.followed
-                        ? <button disabled={props.isDisabling.some(id=>id===u.id)} onClick={() => {
-                        props.unfollow(u.id)
-                    }}>Follow</button>
-                        : <button disabled={props.isDisabling.some(id=>id===u.id)} onClick={() => {
-                        props.follow(u.id)
-                    }}>Unfollow</button>}
-                </div>
-            </span>
-                    <span>
-                <span>
-                    <div>{u.name}</div>
-                    <div>{u.status}</div>
-                </span>
-
-            </span>
-                </div>)
+                users.map(user => <User key={user.id} isDisabling={isDisabling}
+                                     user={user} unfollow={unfollow} follow={follow} />)
             }
         </div>
     }

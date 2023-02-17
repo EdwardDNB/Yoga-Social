@@ -3,7 +3,7 @@ import s from './MyPosts.module.css'
 import Post from './Post/Post'
 import {Field, reduxForm} from "redux-form";
 import {maxCurrentSymbols, required} from "../../Validate/Validate";
-import {Textarea} from "./Textarea";
+import {Textarea} from "../../../Common/Textarea";
 
 const MyPosts =React.memo( props => {
     console.log('RENDER YO')

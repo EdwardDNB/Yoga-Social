@@ -33,12 +33,6 @@ let usersReduser = (state = initialState, action) => {
             return {
                 ...state,
                 users:helperObj(state.users,'id',action.userId, {followed: false})
-               /* users: state.users.map(u => {
-                    if (u.id === action.userId) {
-                        return {...u, followed: false}
-                    }
-                    return u
-                })*/
             }
         case FOLLOW:
             return {
