@@ -1,0 +1,14 @@
+.paginator{
+    padding: 10px;
+}
+
+.selectedPageNum{
+    padding: 5px;
+    font-weight: bold;
+    border: black solid 1px;
+}
+.PageNum{
+    cursor: pointer;
+    padding: 5px;
+    border: grey solid 1px;
+}

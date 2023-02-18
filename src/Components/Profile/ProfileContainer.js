@@ -10,6 +10,7 @@ import {compose} from 'redux';
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
+    console.log('this.props', this.props);
     let id = this.props.params.userId;
     if (!id) {
       id = this.props.userId;

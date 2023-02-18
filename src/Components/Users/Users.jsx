@@ -1,31 +1,18 @@
 import s from './Users.module.css';
 import defaultImg from '../Pictures/UserDefaultPic.png';
 import {NavLink} from 'react-router-dom';
+import {Paginator} from '../Commons/Paginator';
 
 const Users = props => {
-  const pagesNumber = [];
-  const pagesCount = Math.ceil(props.totalCount / props.count);
-  for (let p = 1; p <= pagesCount; p++) {
-    pagesNumber.push(p);
-  }
-
+  debugger;
   return (
     <div>
-      {pagesNumber &&
-        pagesNumber.map(pageNum => {
-          return (
-            <span
-              key={pageNum}
-              onClick={() => {
-                props.eventClick(pageNum);
-              }}
-              className={props.page === pageNum ? s.selectedPageNum : s.PageNum}
-            >
-              {' '}
-              {pageNum}{' '}
-            </span>
-          );
-        })}
+      <Paginator
+        totalCount={props.totalCount}
+        count={props.count}
+        eventClick={props.eventClick}
+        page={props.page}
+      />
 
       {props.users.map(u => (
         <div key={u.id}>
