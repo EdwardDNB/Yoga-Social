@@ -2,7 +2,7 @@ import s from './Navbar.module.css';
 import {NavLink} from 'react-router-dom';
 import Friend1 from '../Pictures/pngtree-cute-girl-avatar-material-png-image_678035.jpg';
 import Friend2 from '../Pictures/lovepik-cute-girl-avatar-png-image_401231841_wh1200.png';
-import Friend3 from '../Pictures/african-american-woman-avatar-with-glasses-portrait-of-a-young-girl-vector-illustration-of-a-face_217290-363.webp';
+import Friend3 from '../Pictures/african-american-woman.webp';
 
 const Navbar = () => {
   let ActiveData = navData => (navData.isActive ? s.active : s.item);
